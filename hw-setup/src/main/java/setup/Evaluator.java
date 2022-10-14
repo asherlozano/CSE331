@@ -63,6 +63,7 @@ public class Evaluator {
       val = val * v + A[j];
 
 
+
     }
 
     // Post: val = A[n-1] + A[n-2] v + ... + A[1] v^{n-2} + A[0] v^{n-1}
