@@ -4,31 +4,35 @@
 1. Why did Fibonacci fail the testThrowsIllegalArgumentException< test? What (if anything) did
 you have to do to fix it? If you did not have to change anything to fix this issue, explain why.
 
-
+Fibonacci failed the throwsIllegalArgumentException because it was including 0 and shouldn't have been. I had to take
+out the = sign on the if conditions
 
 2. Why did Fibonacci fail the testBaseCase test? What (if anything) did you have to do to fix
 it? If you did not have to change anything to fix this issue, explain why.
 
-
+Fibonacci failed the basecase because it was including 2 and shouldn't have been. I had to take
+out the = sign on the if condition
 
 3.Why did Fibonacci fail the testInductiveCase test? What (if anything) did you have to do to
 fix it? If you did not have to change anything to fix this issue, explain why.
 
-
+It was failing the inductivecase test because it was also including the 0 and 2 so the code wasn't correct and failing the
+InductiveCase test.
 
 ## Part 8: Debugger Tutorial
 
 1. What are the values of "x", "y", and "sum" printed by your statement? Why was x not equal 
 to the first integer entered here, and how could we fix this?
 
-
+X and Y both were equal to 4 and the sum of them were 0. X was not equal to 5 because in the code we have (5 / 2) then times 2
+which is 5/2 = 2 then * 2 = 4. We could fix that by just having console.nextInt();
 
 2. What are all the names and values listed in the “Variables” panel? What does the “frames” 
 tab list as the current method and line number? (Write down the text that was highlighted when 
 the Debug perspective first opened.)
 
-
+int x = 3, int y = 4, computeSum:43
 
 3. What are all the names and values listed in the “Variables” panel after each of the two step overs?
 
-
+x= 3 y = 4 sum = -1 or 7 after fixing the code
