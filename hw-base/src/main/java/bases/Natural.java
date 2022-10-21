@@ -222,7 +222,7 @@ public class Natural {
 
         // Inv: r = (base, D[i] b^0 + D[i+1] b^1 + ... + D[n-1] b^j) and i+j = n-1,
         //      where D = this.digits, n = this.digits.length, and b = this.base.
-        while (j != this.digits.length) {  // TODO: Replace the condition here with a suitable one.
+        while (j != this.digits.length -1) {  // TODO: Replace the condition here with a suitable one.
             r = r.times(b).plus(new Natural(base, this.digits[i]));
             j++;
             i++;
@@ -281,7 +281,7 @@ public class Natural {
         // If the other one has more, we will let it calculate plus instead. (This
         // is fair since addition is commutative, i.e., x + y = y + x.)
         if (other.digits.length > this.digits.length) {
-            return other.plus(other);  // will produce the required value
+            return other.plus(this);  // will produce the required value
         }
 
         // We now have: other.digits.length <= this.digits.length
@@ -307,7 +307,7 @@ public class Natural {
         // Inv: D[0] = A[0]+B[0], D[1] = A[1]+B[1], ..., D[i-1] = A[i-1]+B[i-1],
         //      where D = new_digits, A = this.digits, and B = other.digits
         while (i != other.digits.length) {
-            newDigits[i] = other.digits[i] + this.digits[i];
+            newDigits[i] =  this.digits[i] + other.digits[i];
             i++;
             // TODO: Implement the body of this loop, such that it's correct with the given invariant.
 
