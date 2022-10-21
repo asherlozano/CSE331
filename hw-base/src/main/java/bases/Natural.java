@@ -81,7 +81,7 @@ public class Natural {
         //       Include an explanation of why postcondition holds at each return statement.
         //       You can use the template given right before the postcondition in this method.
         // Loop Invariant: Digits.length = n i = 0 and D = this.digits[]
-        // Inv: D[n-1] == i ... D[1] == i, D[i] == 5, return 5;
+        // Inv: D[i+1], ..., D[n-1] are all nonZero, D[i] != 0
         int i = 0;  // TODO: feel free to change 0 to something else
 
         // TODO: write your loop here
@@ -229,6 +229,7 @@ public class Natural {
         }
 
         // TODO: Explain why the postcondition holds at the end of this code.
+        //The postcondition hold that r is base, value because
         // Post: r = (base, this.value)
         return r;
     }
@@ -244,7 +245,7 @@ public class Natural {
         //       Include an explanation of why postcondition holds at each return statement.
         //       You can use the template given right before the postcondition in this method.
         // Loop Inv: buf = current string j = this.digits.length ch = this.char.digits
-        // buf = "" and ch(D[j-1]), ch(D[j-2]), ... char(D[0])
+        // buf = "" and ch(D[j-1]), ch(D[j-2]), ... ch(D[0])
         // Rep Inv: buf != null j < digits.length and j > 0;
         // buf is a string that appends BaseDigits into characters at j
 
@@ -510,7 +511,7 @@ public class Natural {
         }
 
         // Have: r.value = other * (D[0] + D[1] b + ... + D[n-1] b^{n-1})
-        //               = other * value
+        //              = other * value
         return r;
     }
 
