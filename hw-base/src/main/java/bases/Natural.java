@@ -80,13 +80,21 @@ public class Natural {
         //       Your code must be correct with the invariant you write (tests don't check this!).
         //       Include an explanation of why postcondition holds at each return statement.
         //       You can use the template given right before the postcondition in this method.
-
+        // Loop Invariant: Digits.length = n i = 0 and D = this.digits[]
+        // Inv: D[n-1] == i ... D[1] == i, D[i] == 5, return 5;
         int i = 0;  // TODO: feel free to change 0 to something else
 
         // TODO: write your loop here
+        //
+        for (int q = digits.length - 1; digits.length - 1 > i; q--) {
+            if(digits[q] != i){
+                //returns q the leading digit when D[q] != 0
+                return q;
+            }
+        }
 
-        // At this point in the code, we know that _________.
-        // This implies the postcondition below, since __________.
+        // At this point in the code, we know that either we returned 0 or the leading digit.
+        // This implies the postcondition below, since they are all zeros or D[i] is not zero.
 
         // Post: D[i+1], ..., D[n-1] are all zero and (D[i] != 0 or i = 0)
         return i;
@@ -209,15 +217,15 @@ public class Natural {
         Natural b = new Natural(base, this.base);
 
         // TODO: Initialize i,j such that the invariant below holds initially.
-        int i = -1;
+        int i = this.digits.length - 1;
         int j = -1;
 
         // Inv: r = (base, D[i] b^0 + D[i+1] b^1 + ... + D[n-1] b^j) and i+j = n-1,
         //      where D = this.digits, n = this.digits.length, and b = this.base.
-        while (i != -1) {  // TODO: Replace the condition here with a suitable one.
-
-            // TODO: Implement the body of this loop, so that it's correct with the given invariant.
-
+        while (j != this.digits.length - 1) {  // TODO: Replace the condition here with a suitable one.
+            r = r.times(b).plus(new Natural(base, this.digits[i]));
+            j++;
+            i++;
         }
 
         // TODO: Explain why the postcondition holds at the end of this code.
@@ -235,16 +243,24 @@ public class Natural {
         //       Your code must be correct with the invariant you write (tests don't check this!).
         //       Include an explanation of why postcondition holds at each return statement.
         //       You can use the template given right before the postcondition in this method.
+        // Loop Inv: buf = current string j = this.digits.length ch = this.char.digits
+        // buf = "" and ch(D[j-1]), ch(D[j-2]), ... char(D[0])
+        // Rep Inv: buf != null j < digits.length and j > 0;
+        // buf is a string that appends BaseDigits into characters at j
 
 
         StringBuilder buf = new StringBuilder();
 
         // TODO: write your loop here
+        for(int j = this.digits.length - 1; j >= 0; j--){
+            buf.append(BaseDigits.digitToChar(digits[j], getBase()));
+        }
 
-        // At this point in the code, we know that _________.
-        // This implies the postcondition below, since __________.
+        // At this point in the code, we know that buf will append the BaseDigits to a string at index *J.
+        // This implies the postcondition below, since buf is = ch(D[n-1].
 
         // Post: buf = ch(D[n-1]), ch(D[n-2]), ..., ch(D[0])
+        // returns the string of buf that gets the base and turns it into characters to make a full string
         return buf.toString();
     }
 
@@ -263,7 +279,7 @@ public class Natural {
         // If the other one has more, we will let it calculate plus instead. (This
         // is fair since addition is commutative, i.e., x + y = y + x.)
         if (other.digits.length > this.digits.length) {
-            return other.plus(this);  // will produce the required value
+            return other.plus(other);  // will produce the required value
         }
 
         // We now have: other.digits.length <= this.digits.length
@@ -283,30 +299,37 @@ public class Natural {
         //       the next two loops, explaining in English what it does.
 
 
-        int i = this.digits.length;  // TODO: Fill in the initialization code such that the invariant holds initially.
+        int i = 0;  // TODO: Fill in the initialization code such that the invariant holds initially.
 
-        // TODO: Summary comment here
+        // TODO: Iterates through this.digits and other.digits to get the sum of both and puts the sum into newDigits
         // Inv: D[0] = A[0]+B[0], D[1] = A[1]+B[1], ..., D[i-1] = A[i-1]+B[i-1],
         //      where D = new_digits, A = this.digits, and B = other.digits
         while (i != other.digits.length) {
-
+            newDigits[i] = other.digits[i] + this.digits[i];
+            i++;
             // TODO: Implement the body of this loop, such that it's correct with the given invariant.
 
         }
 
         // TODO: Explain why we have D[0] < 2b-1, D[1] < 2b-1, ..., D[n-1] < 2b-1
+        // We have D[0] < 2b-1, D[1] < 2b-1, ..., D[n-1] < 2b-1 because the newDigits is always going to be greater
+        //than 2b-1 since newDigits is this.digits[i] + other.digits[i]
 
         // TODO: Explain why the invariant of the loop below holds initially (no code needed).
+        // The invariant holds because since this.digits is greater than other.digits we have a place holder which will always
+        // have the newDigits greater than 2b-1
 
-        // TODO: Summary comment here
+        // TODO: Iterates through this.digits and other.digits to get the sum of both and puts the sum into newDigits,
+        // where other.digits is >= than this.digits
         // Inv: D[0] = A[0]+B[0], D[1] = A[1]+B[1], ..., D[i-1] = A[i-1]+B[i-1],
         //      where B[k] = other.digits[k] if k < other.digits.length and
         //            B[k] = 0               otherwise
         while (i != this.digits.length) {
-
+            if(i >= other.digits.length){
+                newDigits[i] = this.digits[i];
+            }
+            i++;
             // TODO: Implement the body of this loop, such that it's correct with the given invariant.
-
-
         }
 
         // Have: D[0] = A[0]+B[0], D[1] = A[1]+B[1], ..., D[n-1] = A[n-1]+B[n-1],
@@ -318,9 +341,9 @@ public class Natural {
         // They cause the code to always return null, which we only want to do
         // while you are working on the two loops above. Once those work, remove
         // these lines and start on the third and final loop below.
-        if (this.digits.length < newDigits.length) {
-            return null;
-        }
+        // if (this.digits.length < newDigits.length) {
+        //    return null;
+        //}
 
 
         // TODO: Explain why we have
@@ -331,17 +354,18 @@ public class Natural {
         // *without* changing the value that the digits represent, so they will
         // still represent the value this.value + other.value.
 
-        i = -1;  // TODO: Change this so that the invariant holds initially.
+        i = 0;  // TODO: Change this so that the invariant holds initially.
 
         // Inv: this.value + other.value = D[0] + D[1] b + ... + D[n] b^n and
         //      D[0] < b, D[1] < b, ..., D[i-1] < b and
         //      D[i] < 2b and D[i+1] < 2b-1, D[i+2] < 2b-1, ..., D[n-1] < 2b-1
-        while (i != -1) {  // TODO: Replace the condition here with a suitable one.
-
-            // TODO: Implement the body of this loop. The reader must to be able to
-            //       reason through why your code is correct, so keep it simple!
+        while (i < newDigits.length) {  // TODO: Replace the condition here with a suitable one.
+            while(newDigits[i] >= base){
+                newDigits[i] -= other.base;
+                newDigits[i + 1] += 1;
+            }
             // NOTE: Do not use div or mod. Simple arithmetic should be enough.
-
+            // When I subtract the base from D[i] while addying 1 to D[i+1] and the value of the digits.
             // Hint: Subtracting b from D[i] while adding 1 to D[i+1] does not change
             //       the value that these digits represent since
             //
