@@ -86,8 +86,8 @@ public class Natural {
 
         // TODO: write your loop here
         //
-        for (int q = digits.length - 1; digits.length - 1 > i; q--) {
-            if(digits[q] != i){
+        for (int q = digits.length - 1; q > 0; q--) {
+            if(digits[q] != 0){
                 //returns q the leading digit when D[q] != 0
                 return q;
             }
@@ -217,19 +217,20 @@ public class Natural {
         Natural b = new Natural(base, this.base);
 
         // TODO: Initialize i,j such that the invariant below holds initially.
-        int i = this.digits.length - 1;
+        int i = this.digits.length;
         int j = -1;
 
         // Inv: r = (base, D[i] b^0 + D[i+1] b^1 + ... + D[n-1] b^j) and i+j = n-1,
         //      where D = this.digits, n = this.digits.length, and b = this.base.
-        while (j != this.digits.length - 1) {  // TODO: Replace the condition here with a suitable one.
+        while (j != this.digits.length) {  // TODO: Replace the condition here with a suitable one.
             r = r.times(b).plus(new Natural(base, this.digits[i]));
             j++;
             i++;
         }
 
         // TODO: Explain why the postcondition holds at the end of this code.
-        //The postcondition hold that r is base, value because
+        //The postcondition holds that r is base, value because the invariant from the above loop is creating a
+        // new natural that uses base and digit[i] is value.
         // Post: r = (base, this.value)
         return r;
     }
@@ -254,7 +255,7 @@ public class Natural {
 
         // TODO: write your loop here
         for(int j = this.digits.length - 1; j >= 0; j--){
-            buf.append(BaseDigits.digitToChar(digits[j], getBase()));
+            buf.append(BaseDigits.digitToChar(digits[j], this.base));
         }
 
         // At this point in the code, we know that buf will append the BaseDigits to a string at index *J.
@@ -377,7 +378,7 @@ public class Natural {
             i = i + 1;  // NOTE: do not change this line
         }
 
-        // TODO: Explain why (1) the postcondition holds and
+        // TODO: Explain why (1) the postcondition holds and satisfies the invariant because
         //                   (2) the preconditions of this constructor hold.
         return new Natural(this.base, newDigits);
     }
