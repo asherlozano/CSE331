@@ -24,7 +24,6 @@ public class SimpleSet {
 
   private FiniteSet finite;
   private FiniteSet infinite;
-  private float size;
 
   // TODO: fill in and document the representation
   //       Make sure to include the representation invariant (RI)
@@ -51,7 +50,6 @@ public class SimpleSet {
   public SimpleSet(float[] vals) {
     finite = FiniteSet.of(vals);
     infinite = null;
-    size = vals.length;
 
   }
 
@@ -95,7 +93,10 @@ public class SimpleSet {
    * infty  if this = R \ {p1, p2, ..., pN}
    */
   public float size() {
-    return size;
+    if(checkFinite()){
+      return finite.size();
+    }
+    return Float.POSITIVE_INFINITY;
   }
 
   /**
@@ -119,9 +120,9 @@ public class SimpleSet {
     StringBuilder string = new StringBuilder();
     string.append(checkFinite() ? "{" : "R \\ {");
     List<Float> valList = checkFinite() ? finite.getPoints() : infinite.getPoints();
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < valList.size(); i++) {
       string.append(valList.get(i));
-      if (i != size - 1) {
+      if (i != valList.size() - 1) {
         string.append(", ");
       }
     }
@@ -137,6 +138,8 @@ public class SimpleSet {
   public SimpleSet complement() {
     // TODO: implement this method
     //       include sufficient comments to see why it is correct (hint: cases)
+    // The complement is correct because you just switch the place of the infinite set and the finite set to
+    // it to be able to be the complement
     return new SimpleSet(infinite, finite);
   }
 
@@ -184,7 +187,7 @@ public class SimpleSet {
   public SimpleSet intersection(SimpleSet other) {
     // TODO: implement this method
     //       include sufficient comments to see why it is correct
-    // This method is correct because it covers all 4 cases of both sets being finite,
+    // This method is correct because it covers all 4 cases of both sets being finite and
     // infinite. Then 1 set being infinite and 1 set being finite and vise-versa
     // I then made sure I knew the intersection of the set would either be infinite or finite.
     // After that I correctly changed the set to be the intersection of those 2 sets

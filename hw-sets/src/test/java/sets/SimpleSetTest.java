@@ -122,17 +122,17 @@ public class SimpleSetTest {
   @Test
   public void testSize() {
     // TODO: implement tests for SimpleSet.size()
-    //Tests the current size of the set using complement sets and regular sets
-    assertEquals(S1, 1);
-    assertEquals(S2, 1);
-    assertEquals(S12, 2);
-    assertEquals(S123, 3);
-    assertEquals(S, 0);
-    assertEquals(R1, 1);
-    assertEquals(R2, 1);
-    assertEquals(R12, 2);
-    assertEquals(R123, 3);
-    assertEquals(R, 0);
+    //Tests the current size of the set using complement sets and regular sets, and empty sets
+    assertEquals(S1.size(), 1.0, 0.0);
+    assertEquals(S2.size(), 1.0, 0.0);
+    assertEquals(S12.size(), 2.0, 0.0);
+    assertEquals(S123.size(), 3.0, 0.0);
+    assertEquals(S.size(), 0.0, 0.0);
+      assertEquals(R1.size(), Float.POSITIVE_INFINITY, 0.0);
+    assertEquals(R2.size(), Float.POSITIVE_INFINITY, 0.0);
+    assertEquals(R12.size(), Float.POSITIVE_INFINITY, 0.0);
+    assertEquals(R123.size(), Float.POSITIVE_INFINITY, 0.0);
+    assertEquals(R.size(), Float.POSITIVE_INFINITY, 0.0);
 
   }
 
@@ -146,15 +146,15 @@ public class SimpleSetTest {
   @Test
   public void testToString() {
     // TODO: implement tests for SimpleSet.toString()
-    //Tests that
-    assertEquals(S, "{}");
-    assertEquals(S1, "{1}");
-    assertEquals(S12, "{1, 2}");
-    assertEquals(S123, "1, 2, 3");
-    assertEquals(R, "R");
-    assertEquals(R1, "R \\ {1}");
-    assertEquals(R12, "R \\ {1, 2}");
-    assertEquals(R123, "R \\ {1, 2, 3}");
+    //Tests that check if the set turns to a string correctly using complements and regular sets, and empty sets
+    assertEquals(S.toString(), "{}");
+    assertEquals(S1.toString(), "{1.0}");
+    assertEquals(S12.toString(), "{1.0, 2.0}");
+    assertEquals(S123.toString(), "{1.0, 2.0, 3.0}");
+    assertEquals(R.toString(), "R \\ {}");
+    assertEquals(R1.toString(), "R \\ {1.0}");
+    assertEquals(R12.toString(), "R \\ {1.0, 2.0}");
+    assertEquals(R123.toString(), "R \\ {1.0, 2.0, 3.0}");
 
   }
 
