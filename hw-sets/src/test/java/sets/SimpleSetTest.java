@@ -122,6 +122,17 @@ public class SimpleSetTest {
   @Test
   public void testSize() {
     // TODO: implement tests for SimpleSet.size()
+    //Tests the current size of the set using complement sets and regular sets
+    assertEquals(S1, 1);
+    assertEquals(S2, 1);
+    assertEquals(S12, 2);
+    assertEquals(S123, 3);
+    assertEquals(S, 0);
+    assertEquals(R1, 1);
+    assertEquals(R2, 1);
+    assertEquals(R12, 2);
+    assertEquals(R123, 3);
+    assertEquals(R, 0);
 
   }
 
@@ -135,6 +146,15 @@ public class SimpleSetTest {
   @Test
   public void testToString() {
     // TODO: implement tests for SimpleSet.toString()
+    //Tests that
+    assertEquals(S, "{}");
+    assertEquals(S1, "{1}");
+    assertEquals(S12, "{1, 2}");
+    assertEquals(S123, "1, 2, 3");
+    assertEquals(R, "R");
+    assertEquals(R1, "R \\ {1}");
+    assertEquals(R12, "R \\ {1, 2}");
+    assertEquals(R123, "R \\ {1, 2, 3}");
 
   }
 

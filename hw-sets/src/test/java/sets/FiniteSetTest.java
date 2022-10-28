@@ -67,14 +67,21 @@ public class FiniteSetTest {
   /** A "complex" set. Or, a set that contains more than one value. */
   private static FiniteSet S12 = FiniteSet.of(new float[] {1, 2});
 
-  // TODO: Feel free to initialize additional (private static) FiniteSet
-  //       objects here if you plan to use more of them for the tests you
-  //       need to implement below.
+  /** A "complex" set. Containing more than one value*/
+  private static FiniteSet S123 = FiniteSet.of(new float[]{1, 2, 3});
 
-  ///////////////////////////////////////////////////////////////////////////
-  /// FiniteSet.equals() Tests
-  ///////////////////////////////////////////////////////////////////////////
+  /** A "complex" set. Containing more than one value*/
+  private static FiniteSet S23 = FiniteSet.of(new float[]{2, 3});
 
+  /** A "singleton" set. */
+  private static FiniteSet S2 = FiniteSet.of(new float[]{2});
+
+  /** A "singleton" set. */
+  private static FiniteSet S3 = FiniteSet.of(new float[]{3});
+
+  //@Test(expected=new IndexOutOfBoundsException()){
+
+  //}
   /**
    * Test set equality on an empty set.
    */
@@ -125,10 +132,16 @@ public class FiniteSetTest {
 
   /**
    * Tests forming the union of two finite sets.
+   *
    */
   @Test
   public void testUnion() {
-    // TODO: implement tests for FiniteSet.union()
+    //Testing the union of 2 sets using empty sets, complex, and singleton sets.
+    assertEquals(S0.union(S0), S0);
+    assertEquals(S1.union(S2), S12);
+    assertEquals(S12.union(S3), S123);
+    assertEquals(S123.union(S0), S123);
+    assertEquals(S2.union(S3), S23);
 
   }
 
@@ -138,11 +151,16 @@ public class FiniteSetTest {
 
   /**
    * Tests forming the intersection of two finite sets.
+   *
    */
   @Test
   public void testIntersection() {
-    // TODO: implement tests for FiniteSet.intersection()
-
+    //Testing the intersections of 2 sets using empty sets, complex, and singleton sets.
+    assertEquals(S1.intersection(S0), S0);
+    assertEquals(S12.intersection(S1), S1);
+    assertEquals(S2.intersection(S12), S2);
+    assertEquals(S123.intersection(S12), S12);
+    assertEquals(S23.intersection(S12), S2);
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -151,10 +169,16 @@ public class FiniteSetTest {
 
   /**
    * Tests forming the difference of two finite sets.
+   *
    */
   @Test
   public void testDifference() {
-    // TODO: implement tests for FiniteSet.difference()
+    //Testing the difference of 2 sets using empty sets, complex, and singleton sets.
+    assertEquals(S12.difference(S1), S2);
+    assertEquals(S0.difference(S123), S0);
+    assertEquals(S123.difference(S12), S3);
+    assertEquals(S1.difference(S12), S0);
+    assertEquals(S23.difference(S12), S3);
 
   }
 
