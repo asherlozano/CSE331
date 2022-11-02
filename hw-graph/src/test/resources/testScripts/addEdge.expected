@@ -1,0 +1,15 @@
+# addEdge expected file
+# tests if an edge can be added to a graph
+# an edge can be used to connect nodes and create a path
+
+# Create a graph
+created a graph g1
+
+# Create a node
+added node n1 to g1
+
+# Create an edge
+added edge e1 from n1 to n1 in g1
+
+# Print the nodes in the graph
+g1 contains: n1

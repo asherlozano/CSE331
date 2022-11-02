@@ -9,8 +9,9 @@ included each one; if not, explain whether you considered additional classes and
 not to include them.
 
 
-TODO: Your answer here!
-
+TODO: I feel like this is a sufficient enough interface for a graph because I was thinking of using a hashmap and collections,
+to hold the nodes and edges. The nodes are going to be just a collection of strings and the edges will be a set of edges. This is why
+I didn't include a node class and why I did inclue an edge class.
 
 ## Part 3
 ###########################################################################
@@ -19,4 +20,5 @@ What was your testing strategy for this assignment? How do your script tests and
 differ from each other (if they do), and why?
 
 
-TODO: Your answer here!
+TODO: My JUnit and script tests differ from each other by each script test will cover a specific case and my Junit will cover most cases especially
+the cases my script tests cannot cover.

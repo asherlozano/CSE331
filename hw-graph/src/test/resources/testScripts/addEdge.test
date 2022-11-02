@@ -1,0 +1,15 @@
+# addEdge test file
+# tests if an edge can be added to a graph
+# an edge can be used to connect nodes an create a path
+
+# Create a graph
+CreateGraph  g1
+
+# Create a node
+AddNode g1 n1
+
+# Create an edge
+AddEdge g1 n1 n1 e1
+
+# Print the nodes in the graph
+ListNodes g1
