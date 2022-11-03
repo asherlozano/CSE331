@@ -1,0 +1,18 @@
+# listNodes3graph test file
+# tests if you the listNodes with 3 graphs
+# listNodes lists all the nodes of 3 graph
+
+# Create a graph
+CreateGraph g1
+CreateGraph g2
+CreateGraph g3
+
+# Create a node
+AddNode g1 n1
+AddNode g2 n1
+AddNode g3 n1
+
+# Print the graphs nodes
+ListNodes g1
+ListNodes g2
+ListNodes g3

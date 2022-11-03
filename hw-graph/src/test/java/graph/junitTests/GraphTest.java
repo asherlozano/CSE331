@@ -1,21 +1,31 @@
 package graph.junitTests;
-import org.testng.annotations.Test;
-import main.java.graph.Graph;
+import org.junit.Test;
 import org.junit.Rule;
 import org.junit.rules.Timeout;
+import graph.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 public class GraphTest {
     @Rule
     public Timeout globalTimeout = Timeout.seconds(10);
+
     //10 seconds max per each method tested
     // This test checks if countNodes works and returns the right number of counting nodes
     // Checks cases for counting multiple nodes, creating a graph and makes sure there is a good amount of nodes
     @Test
-    public void testCountNodes(){
+    public void testCountNodes() {
         Graph graph = new Graph();
         graph.addNode("5");
         graph.addNode("7");
         assertEquals("2", graph.countNodes());
+    }
+
+    @Test
+    //This
+    public void testNode(){
+        Graph graph = new Graph();
+        graph.addNode(null);
     }
 
     // This test counts the total edges of the graph
@@ -32,3 +42,4 @@ public class GraphTest {
         assertEquals(2, graph.countEdges());
 
     }
+}

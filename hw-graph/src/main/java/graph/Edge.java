@@ -28,7 +28,7 @@ public class Edge {
      * @returns the starting node
      */
     public String getNode1(){
-
+        return null;
     }
     /**
      * This method when called returns the ending node of the edge
@@ -36,7 +36,7 @@ public class Edge {
      * @returns the ending node
      */
     public String getNode2(){
-
+        return null;
     }
 
     /**
@@ -45,6 +45,6 @@ public class Edge {
      */
 
     public String getEdgeLabel(){
-
+        return null;
     }
 }

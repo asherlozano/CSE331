@@ -1,0 +1,16 @@
+# listChildren1Node test file
+# tests if you can listChildren method can be added to graph
+# listChildren lists all the children of a node
+
+# Create a graph
+CreateGraph  g1
+
+# Create a node
+AddNode g1 n1
+
+# Create an edge
+AddEdge g1 n1 n1 e1
+
+# Print the graphs nodes
+ListNodes g1
+ListChildren g1 n1

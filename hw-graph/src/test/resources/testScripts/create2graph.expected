@@ -1,0 +1,11 @@
+# Create 2graphs expected file
+# Test that 2 graphs can be created
+# A graph can be connected to nodes and labeled edges
+
+# Create a graph
+created graph g1
+created graph g2
+
+# Print the nodes in the graph
+g1 contains:
+g2 contains:

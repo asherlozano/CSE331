@@ -3,7 +3,7 @@
 # an edge can be used to connect nodes an create a path
 
 # Create a graph
-CreateGraph  g1
+CreateGraph g1
 
 # Create a node
 AddNode g1 n1

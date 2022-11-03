@@ -1,0 +1,10 @@
+# Create graph test file
+# Test that a graph can be created
+# A graph can be connected to nodes and labeled edges
+
+
+# Create a graph
+CreateGraph  g1
+
+# Print the graphs nodes
+ListNodes g1

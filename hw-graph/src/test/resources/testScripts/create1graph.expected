@@ -1,0 +1,9 @@
+# Create graph expected file
+# Test that a graph can be created
+# A graph can be connected to nodes and labeled edges
+
+# Create a graph
+created graph g1
+
+# Print the nodes in the graph
+g1 contains:

@@ -14,10 +14,6 @@ public class Graph {
      * Constructs a new graph
      * @spec.effects Constructs a new Graph, "".
      */
-    //Rep Invariant:
-    // The rep invariant is: graph != null && graph.contains(null)
-    // when the graph != null, one of the nodes = null
-    // a node != a different node, and an edge != null.
     public Graph(){
 
     }
@@ -26,6 +22,7 @@ public class Graph {
      * adds a node to the current graph
      * @param name is the node being added
      * @spec.modifies modifies the graph by adding a node
+     * @throws an exception when a name = a node in graph
      */
     public void addNode(String name){
 
@@ -51,7 +48,7 @@ public class Graph {
      * @spec.effects adds an array of strings containing nodes
      */
     public Set<String> listNodes(){
-
+        return null;
     }
 
     /**
@@ -62,7 +59,7 @@ public class Graph {
      * @spec.effects adds an array of strings containing nodes
      */
     public Set<String> listChildren(String node1){
-
+        return null;
     }
 
     /**
@@ -70,7 +67,7 @@ public class Graph {
      * @return the number of nodes in the graph
      */
     public int countNodes(){
-
+        return 0;
     }
 
     /**
@@ -78,16 +75,7 @@ public class Graph {
      * @returns a count of all the edges in the graph
      */
     public int countEdges(){
-
-    }
-
-    /**
-     * Checks when the rep invariant doesn't hold
-     * Throws an exception when the rep invariant doesn't hold
-     * @spec.throws an exception when the rep invariant doesn't hold
-     */
-    private void checkRep(){
-
+        return 0;
     }
 
 

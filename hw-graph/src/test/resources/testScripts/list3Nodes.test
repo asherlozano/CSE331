@@ -1,0 +1,14 @@
+# list3Nodes test file
+# tests if you the listNodes method can be added to graph
+# listNodes lists all the nodes of a graph
+
+# Create a graph
+CreateGraph  g1
+
+# Create a node
+AddNode g1 n1
+AddNode g1 n2
+AddNode g1 n3
+
+# Print the graphs nodes
+ListNodes g1
