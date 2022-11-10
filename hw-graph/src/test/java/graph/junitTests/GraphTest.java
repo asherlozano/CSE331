@@ -27,7 +27,7 @@ public class GraphTest {
         graph.addNode("2");
         Object n = null;
         try {
-            graph.addEdge("2", "3", "e23"));
+            graph.addEdge("2", "3", "e23");
             n = graph;
         } catch(IllegalArgumentException e){
 
@@ -43,7 +43,7 @@ public class GraphTest {
         graph.addEdge(null, "2", "eN2");
         Object n = null;
         try {
-            graph.addEdge(null, "2", "eN2"));
+            graph.addEdge(null, "2", "eN2");
             n = graph;
         } catch(NullPointerException e){
 
