@@ -3,7 +3,7 @@
 # listChildren lists all the children of a node
 
 # Create a graph
-CreateGraph  g1
+CreateGraph g1
 
 # Create a node
 AddNode g1 n1

@@ -3,8 +3,8 @@ import org.junit.Test;
 import org.junit.Rule;
 import org.junit.rules.Timeout;
 import graph.*;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThrows;
+
+import static org.junit.Assert.*;
 
 public class GraphTest {
     @Rule
@@ -22,11 +22,36 @@ public class GraphTest {
     }
 
     @Test
-    //This
-    public void testNode(){
+    public void testEdgeToNowhere(){
+        Graph graph = new Graph();
+        graph.addNode("2");
+        Object n = null;
+        try {
+            graph.addEdge("2", "3", "e23"));
+            n = graph;
+        } catch(IllegalArgumentException e){
+
+        }
+        assertNull("Throws IllegalArgumentException because 1 node didn't exist", n);
+    }
+
+    @Test
+    public void testNodeToNullEdge(){
         Graph graph = new Graph();
         graph.addNode(null);
+        graph.addNode("2");
+        graph.addEdge(null, "2", "eN2");
+        Object n = null;
+        try {
+            graph.addEdge(null, "2", "eN2"));
+            n = graph;
+        } catch(NullPointerException e){
+
+        }
+        assertNull("Throws NullPointerException because 1 node was null", n);
     }
+
+
 
     // This test counts the total edges of the graph
     // This test will check if it returns the right amount of edges
