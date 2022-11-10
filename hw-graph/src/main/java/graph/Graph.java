@@ -39,7 +39,7 @@ public class Graph {
      * adds a node to the current graph
      * @param name is the node being added
      * @spec.modifies modifies the graph by adding a node
-     * @throws an exception when a name = null or another node in a graph
+     * @spec.requires name != null
      */
     public void addNode(String name){
         if(name == null){
@@ -56,8 +56,7 @@ public class Graph {
      * @param label is the label to be added to the edge
      *
      * @spec.modifies changes the graph by adding an edge with 2 nodes
-     * @spec.requires requires at least 1 node in the graph
-     * @throws throws an expection when the node is not in the graph or when the edge is already in the graph
+     * @spec.requires requires at least 1 node in the graph, and the only one edge of the same edge to be in the graph
      *
      */
     public void addEdge(String node1, String node2, String label){
@@ -88,7 +87,7 @@ public class Graph {
      * lists all the children of the called on node
      * @param node1 is the current node wanting to list their children
      * @return an array of strings of the children of the called on node
-     * @throws an expection if the node is not in the graph
+     * @spec.requires the node to be in the graph
      */
     public Set<String> listChildren(String node1){
         if(!graph.containsKey(node1)){
