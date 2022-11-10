@@ -32,7 +32,7 @@ public class Edge {
     /**
      * getNode1 is called and returns the starting node of the edge
      *
-     * @returns the starting node
+     * @return the starting node
      */
     public String getNode1(){
         return node1;
@@ -48,7 +48,7 @@ public class Edge {
 
     /**
      * This method returns the label of the edge
-     * @returns the label of the edge
+     * @return the label of the edge
      */
 
     public String getEdgeLabel(){
@@ -56,6 +56,10 @@ public class Edge {
     }
 
     @Override
+    /**
+     * This method overrides the equals methods for edges
+     * @return true or false if an edge is equal
+     */
     public boolean equals(Object other){
         if(other instanceof Edge){
             if(node1.equals(((Edge)other).node1) && node2.equals(((Edge)other).node2)
@@ -66,6 +70,11 @@ public class Edge {
         return false;
     }
 
+
+    /**
+     * This method returns the hashcode of an edge
+     * @return the hashcode of an edge
+     */
     @Override
     public int hashCode(){
         return node1.hashCode() + node2.hashCode() + label.hashCode();

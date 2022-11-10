@@ -57,8 +57,8 @@ public class Graph {
      *
      * @spec.modifies changes the graph by adding an edge with 2 nodes
      * @spec.requires requires at least 1 node in the graph
-     * @spec.throws throws an expection when the node is not in the graph
-     * @spec.throws throws an expection when the edge is already in the graph
+     * @throws throws an expection when the node is not in the graph
+     * @throws throws an expection when the edge is already in the graph
      *
      */
     public void addEdge(String node1, String node2, String label){
