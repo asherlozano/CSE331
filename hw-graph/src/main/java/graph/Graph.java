@@ -8,7 +8,7 @@ import java.util.Set;
  * A graph represents a mutable list of nodes and labeled edges expressed as a graph. Graphs are
  * lists of paths of nodes that have parents and children
  *
- * An Example of a Graph includes <A,B>, <B,A>, <C,B>, <D,C>.
+ * An Example of a Graph includes (A,B), (B,A), (C,B), (D,C).
  */
 public class Graph {
     private HashMap<String, HashSet<Edge>> graph;

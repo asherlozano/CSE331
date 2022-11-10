@@ -5,8 +5,8 @@ package graph;
  * An edge represents an immutable 2 nodes connected from the first node and ending at the second node
  * and attached is a label
  *
- * An Example of an Edge includes <A,B, Label>, <B,A, Label>,
- * <C,B, Label>, <D,C, Label>, <D, D, Label>.
+ * An Example of an Edge includes (A,B, Label), (B,A, Label),
+ * (C,B, Label), (D,C, Label), (D, D, Label).
  */
 public class Edge {
     private String node1;
@@ -40,7 +40,7 @@ public class Edge {
     /**
      * This method when called returns the ending node of the edge
      *
-     * @returns the ending node
+     * @return the ending node
      */
     public String getNode2(){
         return node2;
