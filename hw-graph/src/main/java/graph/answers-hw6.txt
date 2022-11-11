@@ -44,10 +44,8 @@ to each node. This helps when u grab the node u have all the edges with it. This
 1. Describe any new tests you added and why you added them, or why you feel that your original
 tests alone are sufficient.
 
-I added new Junit tests because I didnt have enough and I felt they are more sufficient now.
-testEdgeToNowhere I needed because if a node was null or if the edge that was created didnt have the node connected
+I added no new Junit tests because I think they are more sufficient because of these are methods that the Script Tests didn't cover
 
-testNodeToNullEdge I needed if the edge was null because a node was null.
 
 
 

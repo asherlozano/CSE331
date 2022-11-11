@@ -92,7 +92,8 @@ public class Graph {
     public HashSet<Edge> listChildren(String parent){
         if(!graph.containsKey(parent)){
             throw new IllegalArgumentException();
-        }HashSet<Edge> parentEdges = graph.get(parent);
+        }
+        HashSet<Edge> parentEdges = graph.get(parent);
 
         return parentEdges;
 
