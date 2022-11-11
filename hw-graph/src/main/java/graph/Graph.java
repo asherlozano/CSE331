@@ -51,8 +51,8 @@ public class Graph {
 
     /**
      * This method adds an edge to
-     * @param node1 is the starting node
-     * @param node2 is the ending location
+     * @param parent is the starting node
+     * @param child is the ending location
      * @param label is the label to be added to the edge
      *
      * @spec.modifies changes the graph by adding an edge with 2 nodes
@@ -85,17 +85,17 @@ public class Graph {
 
     /**
      * lists all the children of the called on node
-     * @param node1 is the current node wanting to list their children
+     * @param parent is the current node wanting to list their children
      * @return an array of strings of the children of the called on node
      * @spec.requires the node to be in the graph
      */
     public HashSet<Edge> listChildren(String parent){
         if(!graph.containsKey(parent)){
             throw new IllegalArgumentException();
-        }
-        HashSet<Edge> parentEdges = graph.get(parent);
+        }HashSet<Edge> parentEdges = graph.get(parent);
 
         return parentEdges;
+
     }
 
     /**
