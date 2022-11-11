@@ -1,4 +1,4 @@
-# addSameNodeTo2graphs test file
+# addSameNodeTo2graphs expected file
 # tests if a node can be added to 2 different graphs
 
 # Create a graph
@@ -7,8 +7,8 @@ CreateGraph g2
 
 # Create a node
 AddNode g1 n1
-AddNode g2 n1
+AddNode g2 n2
 
-# Print the graphs nodes
+# Print the nodes in the graph
 ListNodes g1
 ListNodes g2

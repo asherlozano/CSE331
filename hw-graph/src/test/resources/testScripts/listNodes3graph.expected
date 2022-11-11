@@ -3,9 +3,9 @@
 # listNodes lists all the nodes of 3 graphs
 
 # Create a graph
-created a graph g1
-created a graph g2
-created a graph g3
+created graph g1
+created graph g2
+created graph g3
 
 # Create a node
 added node n1 to g1
@@ -14,5 +14,5 @@ added node n1 to g3
 
 # Print the nodes in the graph
 g1 contains: n1
-g2 contains: n2
-g3 contains: n3
+g2 contains: n1
+g3 contains: n1

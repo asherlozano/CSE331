@@ -1,10 +1,9 @@
-# Create graph test file
+# Create graph expected file
 # Test that a graph can be created
 # A graph can be connected to nodes and labeled edges
-
 
 # Create a graph
 CreateGraph  g1
 
-# Print the graphs nodes
+# Print the nodes in the graph
 ListNodes g1

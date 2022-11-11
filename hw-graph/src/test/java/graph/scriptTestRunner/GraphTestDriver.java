@@ -137,7 +137,7 @@ public class GraphTestDriver {
 
          Graph graph = graphs.get(graphName);
          graph.addNode(nodeName);
-         output.println("added node" + nodeName + " to " + graphName);
+         output.println("added node " + nodeName + " to " + graphName);
     }
 
     private void addEdge(List<String> arguments) {
@@ -161,8 +161,8 @@ public class GraphTestDriver {
          graph.addNode(parentName);
          graph.addNode(childName);
          graph.addEdge(parentName, childName, edgeLabel);
-         output.println("created edge " + edgeLabel + " between " + parentName +
-                 " and " + childName + "in " + graphName);
+         output.println("added edge " + edgeLabel + " from " + parentName +
+                 " to " + childName + " in " + graphName);
     }
 
     private void listNodes(List<String> arguments) {
@@ -178,7 +178,12 @@ public class GraphTestDriver {
         // TODO Insert your code here.
 
         Graph graph = graphs.get(graphName);
-        output.println();
+        Set<String> nodeSet = new TreeSet<String>(graph.listNodes());
+        String list = graphName + " contains:";
+        for (String node : nodeSet){
+            list += " " + node;
+        }
+        output.println(list);
     }
 
     private void listChildren(List<String> arguments) {
@@ -194,23 +199,49 @@ public class GraphTestDriver {
     private void listChildren(String graphName, String parentName) {
         // TODO Insert your code here.
 
-        // ___ = graphs.get(graphName);
-        // output.println(...);
-    }
-
-    /**
-     * This exception results when the input file cannot be parsed properly
-     **/
-    static class CommandException extends RuntimeException {
-
-        public CommandException() {
-            super();
+        Graph graph = graphs.get(graphName);
+        String list = "the children of " + parentName + " in " + graphName + " are:";
+        Queue<Edge> queue = new LinkedList<Edge>();
+        Set<Edge> visited = new HashSet<Edge>();
+        for(Edge children : graph.listChildren(parentName)){
+            queue.add(children);
         }
+        while (!queue.isEmpty()) {
+            Edge e = queue.remove();
+            if (!visited.contains(e)) {
+                visited.add(e);
+                list += " " + e.getChild() + "(" + e.getEdgeLabel() + ")";
+                for (Edge child : graph.listChildren(e.getChild())) {
+                    if (!visited.contains(child)) {
+                        queue.add(child);
+                    }
+                }
+            }
 
-        public CommandException(String s) {
-            super(s);
         }
-
-        public static final long serialVersionUID = 3495;
+        output.println(list);
     }
-}
+//        HashSet<Edge> edgeSet = graph.listChildren(parentName);
+//        for(Edge e : edgeSet){
+//                list += " " + e.getChild() + "(" + e.getEdgeLabel() + ")";
+//        }
+//
+//        output.println(list);
+//    }
+
+        /**
+         * This exception results when the input file cannot be parsed properly
+         **/
+        static class CommandException extends RuntimeException {
+
+            public CommandException() {
+                super();
+            }
+
+            public CommandException(String s) {
+                super(s);
+            }
+
+            public static final long serialVersionUID = 3495;
+        }
+    }

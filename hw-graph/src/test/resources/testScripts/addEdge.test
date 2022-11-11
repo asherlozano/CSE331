@@ -1,6 +1,6 @@
-# addEdge test file
+# addEdge expected file
 # tests if an edge can be added to a graph
-# an edge can be used to connect nodes an create a path
+# an edge can be used to connect nodes and create a path
 
 # Create a graph
 CreateGraph g1

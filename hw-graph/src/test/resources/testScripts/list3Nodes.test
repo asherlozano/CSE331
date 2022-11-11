@@ -1,5 +1,5 @@
-# list3Nodes test file
-# tests if you the listNodes method can be added to graph
+# list3Nodes expected file
+# tests if you can listNodes method can be added to graph
 # listNodes lists all the nodes of a graph
 
 # Create a graph
@@ -10,5 +10,5 @@ AddNode g1 n1
 AddNode g1 n2
 AddNode g1 n3
 
-# Print the graphs nodes
+# Print the nodes in the graph
 ListNodes g1

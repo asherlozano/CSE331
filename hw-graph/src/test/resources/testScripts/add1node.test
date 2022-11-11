@@ -1,13 +1,13 @@
-# addNode test file
+# addNode expected file
 # tests if a node can be added to a graph
 # a node can be used to create an edge
 
 # Create a graph
-CreateGraph  g1
+CreateGraph g1
 
 # Create a node
 AddNode g1 n1
 
-# Print the graphs nodes
+# Print the nodes in the graph
 ListNodes g1
 ListChildren g1 n1

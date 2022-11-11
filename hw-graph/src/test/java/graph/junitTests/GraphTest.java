@@ -21,6 +21,8 @@ public class GraphTest {
         assertEquals("2", graph.countNodes());
     }
 
+    // This test uses a node that is non existant
+    // This test checks cases for when an edge is trying to be made without atleast 1 node existing
     @Test
     public void testEdgeToNowhere(){
         Graph graph = new Graph();
@@ -32,9 +34,12 @@ public class GraphTest {
         } catch(IllegalArgumentException e){
 
         }
-        assertNull("Throws IllegalArgumentException because 1 node didn't exist", n);
+        assertNull("Throws IllegalArgumentException because atleast 1 node didn't exist", n);
     }
 
+
+    //This test checks if a null node is created and used to make an edge.
+    // This test should check cases where a node is null and an edge is null
     @Test
     public void testNodeToNullEdge(){
         Graph graph = new Graph();
@@ -50,6 +55,15 @@ public class GraphTest {
         }
         assertNull("Throws NullPointerException because 1 node was null", n);
     }
+
+//    public void testEdgeEquals(){
+//        Graph graph = new Graph();
+//        graph.addNode("5");
+//        graph.addNode("7");
+//        graph.addEdge("5", "7", "e57");
+//        graph.addEdge("5", "7", "e57");
+//        assertEquals()
+//    }
 
 
 

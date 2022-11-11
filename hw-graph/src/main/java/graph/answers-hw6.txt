@@ -17,6 +17,13 @@ A few examples of possible Graph representations:
 representations listed above (for example, in terms of runtime complexity, space
 complexity, or ease of implementation).
 
+A) An Advantage of A is you are able to have the collection of edges and nodes sorted. A disadvantage would be
+
+B) An Advantage of B is it used a HashMap and the runtime is constant o(1). A disadvantage of it was implementing the listChildren method
+was hard
+
+C) An Advantage of C is it lists all nodes and combinations of nodes that are possible. The disadvantage of this would runtime because
+it could list all the nodes and they could not even connected.
 
 
 
@@ -24,7 +31,9 @@ complexity, or ease of implementation).
 chose it. If you chose to use a different representation than one of the three we described
 above, be sure to list its advantages and disadvantages, too.
 
-
+I chose the rep of a HashMap or B. I chose it because I like hashMaps and understand how they work. HashMap for graph was a great representation
+because the runtime is fast. HashMaps have the String and Set of Edges. The String is all the nodes and the Set of Edges are all the Edges connected
+to each node. This helps when u grab the node u have all the edges with it. This is why I chose this implementation.
 
 
 ## Part 4
@@ -35,11 +44,18 @@ above, be sure to list its advantages and disadvantages, too.
 1. Describe any new tests you added and why you added them, or why you feel that your original
 tests alone are sufficient.
 
+I added new Junit tests because I didnt have enough and I felt they are more sufficient now.
+testEdgeToNowhere I needed because if a node was null or if the edge that was created didnt have the node connected
+
+testNodeToNullEdge I needed if the edge was null because a node was null.
 
 
 
 2. Did you make any changes to your specifications as you were implementing your Graph? (yes/no)
 If yes, describe your changes and why you made them.
+
+Yes I made some changes to my specs because I needed @spec.requires so I didn't have to use @throw an exception. I
+also changed some specs because of my comments from the TA's
 
 
 

@@ -1,16 +1,17 @@
 # listChildren2Nodes expected file
 # tests if the listChildren method can be added to graph
-# listChildren lists all the children of a n1 and n2
+# listChildren lists all the children of a node
 
 # Create a graph
-created a graph g1
+created graph g1
 
 # Create a node
 added node n1 to g1
+added node n2 to g1
 
 # Create an edge
 added edge e12 from n1 to n2 in g1
 
 # Print the nodes in the graph
-g1 contains: n1
-the children of n1 in g1 are:
+g1 contains: n1 n2
+the children of n1 in g1 are: n2(e12)

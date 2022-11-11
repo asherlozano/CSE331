@@ -3,7 +3,7 @@
 # an edge can be used to connect nodes and create a path
 
 # Create a graph
-created a graph g1
+created graph g1
 
 # Create a node
 added node n1 to g1

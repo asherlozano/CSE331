@@ -59,13 +59,13 @@ public class Graph {
      * @spec.requires requires at least 1 node in the graph, and the only one edge of the same edge to be in the graph
      *
      */
-    public void addEdge(String node1, String node2, String label){
-        if(!graph.containsKey(node1) || !graph.containsKey(node2)){
+    public void addEdge(String parent, String child, String label){
+        if(!graph.containsKey(parent) || !graph.containsKey(child)){
             throw new IllegalArgumentException();
         }
 
-        Edge edge1 = new Edge(node1, node2, label);
-        HashSet<Edge> setEdges = graph.get(node1);
+        Edge edge1 = new Edge(parent, child, label);
+        HashSet<Edge> setEdges = graph.get(parent);
         if(setEdges.contains(edge1)){
             throw new IllegalArgumentException();
         }
@@ -89,16 +89,13 @@ public class Graph {
      * @return an array of strings of the children of the called on node
      * @spec.requires the node to be in the graph
      */
-    public Set<String> listChildren(String node1){
-        if(!graph.containsKey(node1)){
+    public HashSet<Edge> listChildren(String parent){
+        if(!graph.containsKey(parent)){
             throw new IllegalArgumentException();
         }
-        Set<Edge> node1Edges = graph.get(node1);
-        Set<String> childrenSet = new HashSet<>();
-        for(Edge e : node1Edges){
-            childrenSet.add(e.getNode2());
-        }
-        return childrenSet;
+        HashSet<Edge> parentEdges = graph.get(parent);
+
+        return parentEdges;
     }
 
     /**
@@ -125,8 +122,8 @@ public class Graph {
                 Set<Edge> edgeSet = graph.get(node);
                 for(Edge edge : edgeSet){
                     assert (edge != null);
-                    assert graph.containsKey(edge.getNode1());
-                    assert graph.containsKey(edge.getNode2());
+                    assert graph.containsKey(edge.getParent());
+                    assert graph.containsKey(edge.getChild());
                 }
             }
         }

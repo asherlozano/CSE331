@@ -1,5 +1,5 @@
-# listChildren1Node test file
-# tests if you can listChildren method can be added to graph
+# listChildren1Node expected file
+# tests if the listChildren method can be added to graph
 # listChildren lists all the children of a node
 
 # Create a graph
@@ -11,6 +11,6 @@ AddNode g1 n1
 # Create an edge
 AddEdge g1 n1 n1 e1
 
-# Print the graphs nodes
+# Print the nodes in the graph
 ListNodes g1
 ListChildren g1 n1

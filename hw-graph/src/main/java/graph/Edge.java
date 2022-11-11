@@ -9,41 +9,41 @@ package graph;
  * (C,B, Label), (D,C, Label), (D, D, Label).
  */
 public class Edge {
-    private String node1;
-    private String node2;
+    private String parent;
+    private String child;
     private String label;
 
     /**
      * The class edge holds 2 nodes and a name for the labeled edge
      *
-     * @param node1 starting node
-     * @param node2 ending node
+     * @param parent starting node
+     * @param child ending node
      * @param label name of label
      */
-    public Edge(String node1, String node2, String label) {
-        if(node1 == null || node2 == null || label == null){
+    public Edge(String parent, String child, String label) {
+        if(child == null || parent == null || label == null){
             throw new NullPointerException();
         }
-        this.node1 = node1;
-        this.node2 = node2;
+        this.parent = parent;
+        this.child = child;
         this.label = label;
     }
 
     /**
-     * getNode1 is called and returns the starting node of the edge
+     * getParent is called and returns the starting node of the edge
      *
      * @return the starting node
      */
-    public String getNode1(){
-        return node1;
+    public String getParent(){
+        return parent;
     }
     /**
      * This method when called returns the ending node of the edge
      *
-     * @return the ending node
+     * @return the child node
      */
-    public String getNode2(){
-        return node2;
+    public String getChild(){
+        return child;
     }
 
     /**
@@ -62,7 +62,7 @@ public class Edge {
      */
     public boolean equals(Object other){
         if(other instanceof Edge){
-            if(node1.equals(((Edge)other).node1) && node2.equals(((Edge)other).node2)
+            if(parent.equals(((Edge)other).parent) && child.equals(((Edge)other).child)
                     && label.equals(((Edge)other).label)){
                 return true;
             }
@@ -77,6 +77,6 @@ public class Edge {
      */
     @Override
     public int hashCode(){
-        return node1.hashCode() + node2.hashCode() + label.hashCode();
+        return parent.hashCode() + child.hashCode() + label.hashCode();
     }
 }
