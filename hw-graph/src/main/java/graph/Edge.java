@@ -8,6 +8,11 @@ package graph;
  * An Example of an Edge includes (A,B, Label), (B,A, Label),
  * (C,B, Label), (D,C, Label), (D, D, Label).
  */
+
+     //AF: An Edge is e12 = e(parent, then child)
+     // p = parent c = child and l = label. An Edge looks like this (p, c, l)
+
+    //REP INV: parent != null child != null and label != null
 public class Edge {
     private String parent;
     private String child;
