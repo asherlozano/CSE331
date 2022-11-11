@@ -18,7 +18,7 @@ public class GraphTest {
         Graph graph = new Graph();
         graph.addNode("5");
         graph.addNode("7");
-        assertEquals("2", graph.countNodes());
+        assertEquals(2, graph.countNodes());
     }
 
     // This test uses a node that is non existant
@@ -27,14 +27,12 @@ public class GraphTest {
     public void testEdgeToNowhere(){
         Graph graph = new Graph();
         graph.addNode("2");
-        Object n = null;
         try {
             graph.addEdge("2", "3", "e23");
-            n = graph;
         } catch(IllegalArgumentException e){
 
         }
-        assertNull("Throws IllegalArgumentException because atleast 1 node didn't exist", n);
+        assertNull("Throws IllegalArgumentException because atleast 1 node didn't exist");
     }
 
 
