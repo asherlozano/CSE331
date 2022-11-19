@@ -26,7 +26,7 @@ public class Edge {
      * @param label name of label
      */
     public Edge(String parent, String child, String label) {
-        if(child == null || parent == null || label == null){
+        if(parent == null || child == null || label == null){
             throw new NullPointerException();
         }
         this.parent = parent;
@@ -60,19 +60,21 @@ public class Edge {
         return label;
     }
 
+    public String toString(){
+        return child.toString() + "(" + label.toString() + ")";
+    }
+
     @Override
     /**
      * This method overrides the equals methods for edges
      * @return true or false if an edge is equal
      */
     public boolean equals(Object other){
-        if(other instanceof Edge){
-            if(parent.equals(((Edge)other).parent) && child.equals(((Edge)other).child)
-                    && label.equals(((Edge)other).label)){
-                return true;
-            }
+        if(!(other instanceof Edge)){
+            return false;
         }
-        return false;
+        Edge o = (Edge) other;
+        return this.child.equals(o.child) && this.label.equals(o.label);
     }
 
 
@@ -82,6 +84,6 @@ public class Edge {
      */
     @Override
     public int hashCode(){
-        return parent.hashCode() + child.hashCode() + label.hashCode();
+        return child.hashCode()^label.hashCode();
     }
 }

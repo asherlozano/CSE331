@@ -1,8 +1,7 @@
 package graph;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+
 
 /**
  * A graph represents a mutable list of nodes and labeled edges expressed as a graph. Graphs are
@@ -39,7 +38,7 @@ public class Graph {
      * adds a node to the current graph
      * @param name is the node being added
      * @spec.modifies modifies the graph by adding a node
-     * @spec.requires name != null
+     * @spec.requires name != null and name is not already in graph
      */
     public void addNode(String name){
         if(name == null){
@@ -63,13 +62,11 @@ public class Graph {
         if(!graph.containsKey(parent) || !graph.containsKey(child)){
             throw new IllegalArgumentException();
         }
-
-        Edge edge1 = new Edge(parent, child, label);
         HashSet<Edge> setEdges = graph.get(parent);
-        if(setEdges.contains(edge1)){
-            throw new IllegalArgumentException();
+        Edge edge1 = new Edge(parent, child, label);
+        if(!(setEdges.contains(edge1))){
+            setEdges.add(edge1);
         }
-        setEdges.add(edge1);
         countsEdges++;
         checkRep();
     }
@@ -80,23 +77,45 @@ public class Graph {
      *
      */
     public Set<String> listNodes(){
-        return graph.keySet();
+        return Collections.unmodifiableSet(graph.keySet());
     }
 
     /**
      * lists all the children of the called on node
      * @param parent is the current node wanting to list their children
-     * @return an array of strings of the children of the called on node
+     * @return a list of the children of the called on node
      * @spec.requires the node to be in the graph
+     * @spec.requires node has children
      */
-    public HashSet<Edge> listChildren(String parent){
+    public List<String> listChildren(String parent){
         if(!graph.containsKey(parent)){
             throw new IllegalArgumentException();
         }
-        HashSet<Edge> parentEdges = graph.get(parent);
+        Set<Edge> parentEdges = graph.get(parent);
+        List<String> client = new ArrayList<>();
+        for (Edge current : parentEdges){
+            client.add(current.getChild());
+        }
+        return client;
 
-        return parentEdges;
+    }
 
+    /**
+     * Gets the label of the parent and child nodes
+     * @param parent is the parent node of the label
+     * @param child is the child node of the child
+     * @return the String which is the edgeLabel
+     * @spec.requires the parent and child to be in the graph.
+     */
+    public String getLabel(String parent, String child){
+        Set<Edge> setEdges = graph.get(parent);
+        for(Edge curr: setEdges){
+            Edge edgeCheck = new Edge(parent, child, curr.getEdgeLabel());
+            if(edgeCheck.equals(curr)){
+                return curr.getEdgeLabel();
+            }
+        }
+        return null;
     }
 
     /**

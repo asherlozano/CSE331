@@ -10,4 +10,3 @@ added node n1 to g1
 
 # Print the nodes in the graph
 g1 contains: n1
-the children of n1 in g1 are:

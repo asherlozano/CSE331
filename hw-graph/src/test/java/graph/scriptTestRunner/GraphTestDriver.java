@@ -198,36 +198,56 @@ public class GraphTestDriver {
 
     private void listChildren(String graphName, String parentName) {
         // TODO Insert your code here.
-
-        Graph graph = graphs.get(graphName);
-        String list = "the children of " + parentName + " in " + graphName + " are:";
-        Queue<Edge> queue = new LinkedList<Edge>();
-        Set<Edge> visited = new HashSet<Edge>();
-        for(Edge children : graph.listChildren(parentName)){
-            queue.add(children);
-        }
-        while (!queue.isEmpty()) {
-            Edge e = queue.remove();
-            if (!visited.contains(e)) {
-                visited.add(e);
-                list += " " + e.getChild() + "(" + e.getEdgeLabel() + ")";
-                for (Edge child : graph.listChildren(e.getChild())) {
-                    if (!visited.contains(child)) {
-                        queue.add(child);
-                    }
-                }
-            }
-
-        }
-        output.println(list);
-    }
-//        HashSet<Edge> edgeSet = graph.listChildren(parentName);
+//        Queue<Edge> queue = new LinkedList<Edge>();
+//        Set<Edge> visited = new HashSet<Edge>();
+//        for(Edge children : graph.listChildren(parentName)){
+//            queue.add(children);
+//        }
+//        while (!queue.isEmpty()) {
+//            Edge e = queue.remove();
+//            if (!visited.contains(e)) {
+//                visited.add(e);
+//                list += " " + e.getChild() + "(" + e.getEdgeLabel() + ")";
+//                for (Edge child : graph.listChildren(e.getChild())) {
+//                    if (!visited.contains(child)) {
+//                        queue.add(child);
+//                    }
+//                }
+//            }
+//
+//        }
+//        output.println(list);
+//   }
+//        Graph graph = graphs.get(graphName);
+//        String list = "the children of " + parentName + " in " + graphName + " are:";
+//
+//        TreeSet<Edge> edgeSet = new TreeSet<Edge>(graph.listChildren(parentName));
 //        for(Edge e : edgeSet){
 //                list += " " + e.getChild() + "(" + e.getEdgeLabel() + ")";
 //        }
 //
 //        output.println(list);
-//    }
+        Graph graph = graphs.get(graphName);
+        String list = ("the children of " + parentName + " in " + graphName + " are:");
+        List<String> nodes = new ArrayList<>(graph.listChildren(parentName));
+        Collections.sort(nodes);
+        if (nodes.size() != 0) {
+            for (int i = 0; i < nodes.size(); i++) {
+                if (i + 1 == nodes.size()) {
+                    String atNode = nodes.get(i);
+                    list += " " + atNode + "(" + graph.getLabel(parentName, atNode) + ")";
+                    output.println(list);
+                } else if (i + 1 != nodes.size()) {
+                    list += " " + nodes.get(i) + "(" + graph.getLabel(parentName, nodes.get(i)) + ")";
+                    output.print(list);
+
+                }
+            }
+        } else {
+            output.println();
+        }
+    }
+
 
         /**
          * This exception results when the input file cannot be parsed properly
@@ -244,4 +264,4 @@ public class GraphTestDriver {
 
             public static final long serialVersionUID = 3495;
         }
-    }
+}
