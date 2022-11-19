@@ -44,7 +44,9 @@ public class Graph {
         if(name == null){
             throw new NullPointerException();
         }
-        graph.put(name, new HashSet<Edge>());
+        if(!graph.containsKey(name)) {
+            graph.put(name, new HashSet<Edge>());
+        }
         checkRep();
     }
 

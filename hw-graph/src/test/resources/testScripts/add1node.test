@@ -10,4 +10,3 @@ AddNode g1 n1
 
 # Print the nodes in the graph
 ListNodes g1
-ListChildren g1 n1

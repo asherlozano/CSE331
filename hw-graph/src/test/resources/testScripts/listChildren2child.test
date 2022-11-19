@@ -16,4 +16,4 @@ AddEdge g1 n2 n3 e23
 
 # Print the nodes in the graph
 ListNodes g1
-ListChildren g1 n1
+ListChildren g1 n2

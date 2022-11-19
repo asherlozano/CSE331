@@ -236,16 +236,15 @@ public class GraphTestDriver {
                 if (i + 1 == nodes.size()) {
                     String atNode = nodes.get(i);
                     list += " " + atNode + "(" + graph.getLabel(parentName, atNode) + ")";
-                    output.println(list);
                 } else if (i + 1 != nodes.size()) {
                     list += " " + nodes.get(i) + "(" + graph.getLabel(parentName, nodes.get(i)) + ")";
-                    output.print(list);
 
                 }
             }
         } else {
             output.println();
         }
+        output.println(list);
     }
 
 
