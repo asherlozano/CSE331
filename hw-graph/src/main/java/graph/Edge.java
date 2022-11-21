@@ -1,5 +1,7 @@
 package graph;
 
+import graph.*;
+import java.util.Objects;
 
 /**
  * An edge represents an immutable 2 nodes connected from the first node and ending at the second node
@@ -13,10 +15,10 @@ package graph;
      // p = parent c = child and l = label. An Edge looks like this (p, c, l)
 
     //REP INV: parent != null child != null and label != null
-public class Edge {
-    private String parent;
-    private String child;
-    private String label;
+public class Edge<N, D> {
+    private N parent;
+    private N child;
+    private D label;
 
     /**
      * The class edge holds 2 nodes and a name for the labeled edge
@@ -25,7 +27,7 @@ public class Edge {
      * @param child ending node
      * @param label name of label
      */
-    public Edge(String parent, String child, String label) {
+    public Edge(N parent, N child, D label) {
         if(parent == null || child == null || label == null){
             throw new NullPointerException();
         }
@@ -39,7 +41,7 @@ public class Edge {
      *
      * @return the starting node
      */
-    public String getParent(){
+    public N getParent(){
         return parent;
     }
     /**
@@ -47,7 +49,7 @@ public class Edge {
      *
      * @return the child node
      */
-    public String getChild(){
+    public N getChild(){
         return child;
     }
 
@@ -56,12 +58,8 @@ public class Edge {
      * @return the label of the edge
      */
 
-    public String getEdgeLabel(){
+    public D getEdgeLabel(){
         return label;
-    }
-
-    public String toString(){
-        return child.toString() + "(" + label.toString() + ")";
     }
 
     @Override
@@ -70,10 +68,10 @@ public class Edge {
      * @return true or false if an edge is equal
      */
     public boolean equals(Object other){
-        if(!(other instanceof Edge)){
+        if(!(other instanceof Edge<?,?>)){
             return false;
         }
-        Edge o = (Edge) other;
+        Edge<?, ?> o = (Edge<?, ?>) other;
         return this.child.equals(o.child) && this.label.equals(o.label);
     }
 
@@ -84,6 +82,6 @@ public class Edge {
      */
     @Override
     public int hashCode(){
-        return child.hashCode()^label.hashCode();
+        return Objects.hash(parent, child, label);
     }
 }

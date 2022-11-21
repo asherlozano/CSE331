@@ -27,6 +27,7 @@ public class TaskSorter {
     // and edges should be Dependency objects.
     // You don't have to write an abstraction function or
     // representation invariant for this class.
+    private final HashMap<Task, Dependency> graph;
 
     /**
      * Creates a new TaskSorter object with no added tasks or dependencies.

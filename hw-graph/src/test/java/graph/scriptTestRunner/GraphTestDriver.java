@@ -158,8 +158,6 @@ public class GraphTestDriver {
         // TODO Insert your code here.
 
          Graph graph = graphs.get(graphName);
-         graph.addNode(parentName);
-         graph.addNode(childName);
          graph.addEdge(parentName, childName, edgeLabel);
          output.println("added edge " + edgeLabel + " from " + parentName +
                  " to " + childName + " in " + graphName);

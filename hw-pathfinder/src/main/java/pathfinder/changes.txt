@@ -1,2 +1,5 @@
 Briefly list any changes you made to your graph class during hw-pathfinder, and why you made those changes.
 
+The changes I made to my graph was listChildren because I didn't pass all the test now I did. I also changed addEdge because that's what
+my problem was with my listChildren. I also added a getLabel so I could use that for my graphTestDriver.
+Thats about it other than making the graph generic.

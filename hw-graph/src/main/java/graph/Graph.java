@@ -9,8 +9,8 @@ import java.util.*;
  *
  * An Example of a Graph includes (A,B), (B,A), (C,B), (D,C).
  */
-public class Graph {
-    private HashMap<String, HashSet<Edge>> graph;
+public class Graph<N, D> {
+    private final HashMap<N, HashSet<Edge<N, D>>> graph;
     public static final boolean CHECK_REP = false;
     private int countsEdges = 0;
     /**
@@ -30,7 +30,7 @@ public class Graph {
     // node1 is parent node and node2 represents a child of node1 and edge1 and edge2 are the labels of the
     // edges.
     public Graph(){
-        this.graph = new HashMap<>();
+        this.graph = new HashMap<N, HashSet<Edge<N, D>>>();
         checkRep();
     }
 
@@ -40,12 +40,12 @@ public class Graph {
      * @spec.modifies modifies the graph by adding a node
      * @spec.requires name != null and name is not already in graph
      */
-    public void addNode(String name){
+    public void addNode(N name){
         if(name == null){
             throw new NullPointerException();
         }
         if(!graph.containsKey(name)) {
-            graph.put(name, new HashSet<Edge>());
+            graph.put(name, new HashSet<Edge<N, D>>());
         }
         checkRep();
     }
@@ -60,12 +60,12 @@ public class Graph {
      * @spec.requires requires at least 1 node in the graph, and the only one edge of the same edge to be in the graph
      *
      */
-    public void addEdge(String parent, String child, String label){
+    public void addEdge(N parent, N child, D label){
         if(!graph.containsKey(parent) || !graph.containsKey(child)){
             throw new IllegalArgumentException();
         }
-        HashSet<Edge> setEdges = graph.get(parent);
-        Edge edge1 = new Edge(parent, child, label);
+        HashSet<Edge<N, D>> setEdges = graph.get(parent);
+        Edge<N, D> edge1 = new Edge<N, D>(parent, child, label);
         if(!(setEdges.contains(edge1))){
             setEdges.add(edge1);
         }
@@ -78,7 +78,7 @@ public class Graph {
      * @return a set of strings containing all the nodes in the graph
      *
      */
-    public Set<String> listNodes(){
+    public Set<N> listNodes(){
         return Collections.unmodifiableSet(graph.keySet());
     }
 
@@ -89,13 +89,13 @@ public class Graph {
      * @spec.requires the node to be in the graph
      * @spec.requires node has children
      */
-    public List<String> listChildren(String parent){
+    public List<N> listChildren(N parent){
         if(!graph.containsKey(parent)){
             throw new IllegalArgumentException();
         }
-        Set<Edge> parentEdges = graph.get(parent);
-        List<String> client = new ArrayList<>();
-        for (Edge current : parentEdges){
+        HashSet<Edge<N, D>> parentEdges = graph.get(parent);
+        List<N> client = new ArrayList<>();
+        for (Edge<N, D> current : parentEdges){
             client.add(current.getChild());
         }
         return client;
@@ -109,10 +109,10 @@ public class Graph {
      * @return the String which is the edgeLabel
      * @spec.requires the parent and child to be in the graph.
      */
-    public String getLabel(String parent, String child){
-        Set<Edge> setEdges = graph.get(parent);
-        for(Edge curr: setEdges){
-            Edge edgeCheck = new Edge(parent, child, curr.getEdgeLabel());
+    public D getLabel(N parent, N child){
+        HashSet<Edge<N, D>> setEdges = graph.get(parent);
+        for(Edge<N, D> curr: setEdges){
+            Edge<N, D> edgeCheck = new Edge<N, D>(parent, child, curr.getEdgeLabel());
             if(edgeCheck.equals(curr)){
                 return curr.getEdgeLabel();
             }
@@ -140,11 +140,10 @@ public class Graph {
         assert (graph != null);
         assert (!graph.containsKey(null));
         if(CHECK_REP){
-            for(String node: graph.keySet()) {
-                Set<Edge> edgeSet = graph.get(node);
-                for(Edge edge : edgeSet){
+            for(N node: graph.keySet()) {
+                HashSet<Edge<N, D>> edgeSet = graph.get(node);
+                for(Edge<N, D> edge : edgeSet){
                     assert (edge != null);
-                    assert graph.containsKey(edge.getParent());
                     assert graph.containsKey(edge.getChild());
                 }
             }

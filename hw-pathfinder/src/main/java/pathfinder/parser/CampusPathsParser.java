@@ -10,7 +10,8 @@
  */
 
 package pathfinder.parser;
-
+import java.io.*;
+import java.util.*;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -70,7 +71,6 @@ public class CampusPathsParser {
     public static List<CampusPath> parseCampusPaths(String file) {
         List<CampusPath> paths = new ArrayList<>();
         List<String> lines = readLines(file);
-        //
         for (String line : lines) {
             String[] fields = line.split(",");
             if (fields.length != 5) {
