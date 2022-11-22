@@ -9,12 +9,16 @@
  * author.
  */
 
-package pathfinder.datastructures;
-import java.awt.*;
-import java.nio.file.Path;
+package pathfinder;
 import java.util.HashMap;
 import java.util.Map;
-import graph.Graph.*;
+import java.util.List;
+import pathfinder.parser.CampusBuilding;
+import pathfinder.parser.CampusPath;
+import pathfinder.parser.CampusPathsParser;
+import pathfinder.datastructures.Point;
+import pathfinder.datastructures.Path;
+import graph.*;
 
 public class CampusMap implements ModelAPI {
     Map<String, String> buildingName;
@@ -26,7 +30,7 @@ public class CampusMap implements ModelAPI {
         campusMap = new Graph<Point, Double>();
         buildingName = new HashMap<>();
         campusBuildings = CampusPathsParser.parseCampusBuildings("campus_buildings.csv");
-        campusBuildings = CampusPathsParser.parseCampusPaths("campus_paths.csv");
+        campusPaths = CampusPathsParser.parseCampusPaths("campus_paths.csv");
         for(CampusBuilding b : campusBuildings){
             buildingName.put(b.getShortName(), b.getLongName());
         }
@@ -60,7 +64,7 @@ public class CampusMap implements ModelAPI {
         double y2 = 0.0;
         if(shortNameExists(startShortName) && shortNameExists(endShortName)){
             for(CampusBuilding build : campusBuildings){
-                if(build.getShortName().equals(startShortName){
+                if(build.getShortName().equals(startShortName)){
                     x1 = build.getX();
                     y1 = build.getY();
                 }
@@ -70,10 +74,10 @@ public class CampusMap implements ModelAPI {
                 }
                 Point a = new Point(x1, y1);
                 Point b = new Point(x2, y2);
-                return Dijkstra.dijkstraAlgorithm(campusMap, a, b);
+                return Dijkstra.dijkstra(campusMap, a, b);
             }
-            return null;
         }
+        return null;
     }
 
 }

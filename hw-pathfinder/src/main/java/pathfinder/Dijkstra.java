@@ -3,6 +3,9 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.PriorityQueue;
 import java.util.Set;
+import java.util.List;
+import pathfinder.datastructures.Path;
+import graph.*;
 
 public class Dijkstra {
     public static <T> Path<T> dijkstra(Graph<T, Double> graph, T start, T dest) {
@@ -22,10 +25,11 @@ public class Dijkstra {
                 continue;
             }
 
-            HashSet<Graph.Edge<T, Double>> children = graph.listChildren(mindDest);
-            for (Graph.Edge<T, Double> child: children) {
+            List<T> children = graph.listChildren(mindDest);
+            for (T child: children) {
                 if (!finished.contains(child)) {
-                    Path<T> newPath = minPath.extend(child.getChild(), child.getLabel());
+                    Double label = graph.getLabel(mindDest, child);
+                    Path<T> newPath = minPath.extend(child, label);
                     active.add(newPath);
                 }
             }

@@ -12,10 +12,6 @@
 package pathfinder;
 
 import pathfinder.datastructures.*;
-
-import java.awt.*;
-import java.awt.Point;
-import java.nio.file.Path;
 import java.util.Map;
 
 /*

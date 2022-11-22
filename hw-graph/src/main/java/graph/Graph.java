@@ -60,7 +60,7 @@ public class Graph<N, D> {
      * @spec.requires requires at least 1 node in the graph, and the only one edge of the same edge to be in the graph
      *
      */
-    public void addEdge(N parent, N child, D label){
+    public boolean addEdge(N parent, N child, D label){
         if(!graph.containsKey(parent) || !graph.containsKey(child)){
             throw new IllegalArgumentException();
         }
@@ -68,9 +68,11 @@ public class Graph<N, D> {
         Edge<N, D> edge1 = new Edge<N, D>(parent, child, label);
         if(!(setEdges.contains(edge1))){
             setEdges.add(edge1);
+            return true;
         }
         countsEdges++;
         checkRep();
+        return false;
     }
 
     /**
@@ -80,6 +82,10 @@ public class Graph<N, D> {
      */
     public Set<N> listNodes(){
         return Collections.unmodifiableSet(graph.keySet());
+    }
+
+    public HashSet<Edge<N, D>> listEdges(){
+        return Collections.unmodifiableSet();
     }
 
     /**

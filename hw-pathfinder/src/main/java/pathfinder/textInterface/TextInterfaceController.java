@@ -13,7 +13,7 @@ package pathfinder.textInterface;
 
 import pathfinder.ModelAPI;
 import pathfinder.datastructures.Path;
-import java.awt.*;
+import pathfinder.datastructures.Point;
 import java.util.Map;
 
 /**

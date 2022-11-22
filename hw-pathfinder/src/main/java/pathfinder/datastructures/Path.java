@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import pathfinder.datastructures.*;
-import
 
 /**
  * This represents an immutable path between two cartesian coordinate points, particularly

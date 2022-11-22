@@ -27,15 +27,14 @@ public class TaskSorter {
     // and edges should be Dependency objects.
     // You don't have to write an abstraction function or
     // representation invariant for this class.
-    private final HashMap<Task, Dependency> graph;
+    private final Graph<Task, Dependency> graph;
 
     /**
      * Creates a new TaskSorter object with no added tasks or dependencies.
      */
     public TaskSorter() {
         // TODO: Implement creating an empty graph.
-
-        throw new RuntimeException("not yet implemented");
+        graph = new Graph(Task, Dependency>);
     }
 
     /**
@@ -48,8 +47,11 @@ public class TaskSorter {
     public void addTask(Task t) {
         // TODO: Implement adding a Task as a node.
         //       Do nothing if the task exists already.
+        Set<Task> tasks = graph.listNodes();
+        if(!tasks.contains(t)){
+            graph.addNode(t);
+        }
 
-        throw new RuntimeException("not yet implemented");
     }
 
     /**
@@ -58,8 +60,7 @@ public class TaskSorter {
      */
     public Set<Task> getTasks() {
         // TODO: Implement getting all the tasks (nodes) in the graph.
-
-        throw new RuntimeException("not yet implemented");
+        return (Set<Task>)graph.listNodes();
     }
 
     /**
@@ -79,7 +80,9 @@ public class TaskSorter {
         // NOTE: The edge should go from "before" to "after"!
         //       The tests will not pass if the edges are the other way.
 
-        throw new RuntimeException("not yet implemented");
+        if(!graph.addEdge(before, after, graph.getLabel())){
+            graph.addEdge(before, after, graph.getLabel(before, after));
+        }
     }
 
     /**
@@ -94,8 +97,7 @@ public class TaskSorter {
         // TODO: Implement getting the dependencies that point to the tasks
         //       depending on the given Task (in other words, get the edges
         //       to a node's children in the graph)
-
-        throw new RuntimeException("not yet implemented");
+        return graph.get(t).listChildren();
     }
 
     /**
