@@ -1,0 +1,6 @@
+#empty graph test
+CreateGraph emptyGraph
+
+ListNodes emptyGraph
+
+FindPath emptyGraph a b

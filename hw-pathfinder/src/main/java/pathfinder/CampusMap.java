@@ -27,7 +27,7 @@ public class CampusMap implements ModelAPI {
     List<CampusPath> campusPaths;
 
     public CampusMap(){
-        campusMap = new Graph<Point, Double>();
+        campusMap = new Graph<>();
         buildingName = new HashMap<>();
         campusBuildings = CampusPathsParser.parseCampusBuildings("campus_buildings.csv");
         campusPaths = CampusPathsParser.parseCampusPaths("campus_paths.csv");
@@ -74,7 +74,7 @@ public class CampusMap implements ModelAPI {
                 }
                 Point a = new Point(x1, y1);
                 Point b = new Point(x2, y2);
-                return Dijkstra.dijkstra(campusMap, a, b);
+                return Dijkstra.findPath(campusMap, a, b);
             }
         }
         return null;

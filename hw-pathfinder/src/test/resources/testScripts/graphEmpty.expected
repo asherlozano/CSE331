@@ -1,0 +1,7 @@
+#empty graph test
+created graph emptyGraph
+
+emptyGraph contains: []
+
+unknown: a
+unknown: b

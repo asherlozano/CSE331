@@ -1,0 +1,12 @@
+#tests if two nodes that are connected with the wrong path
+created graph twoNodes
+added node a to twoNodes
+added node b to twoNodes
+
+added edge 10.000 from a to b in twoNodes
+
+twoNodes contains: [a, b]
+
+the children of a in twoNodes are: b(10.000)
+
+unknown: c

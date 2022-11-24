@@ -1,0 +1,17 @@
+#path with weight of 10 with 2 nodes and 2 edges test
+created graph twoNodes
+
+added node a to twoNodes
+added node b to twoNodes
+
+added edge 10.000 from a to b in twoNodes
+added edge 5.000 from b to a in twoNodes
+
+twoNodes contains: [a, b]
+
+the children of a in twoNodes are: b(10.000)
+the children of b in twoNodes are: a(5.000)
+
+path from a to b:
+a to b with weight 10.000
+total cost: 10.000

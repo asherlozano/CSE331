@@ -4,18 +4,22 @@ import org.junit.Rule;
 import org.junit.rules.Timeout;
 import graph.*;
 
+import java.util.HashSet;
+
 import static org.junit.Assert.*;
 
 public class GraphTest {
     @Rule
     public Timeout globalTimeout = Timeout.seconds(10);
+    private String string = "";
 
     //10 seconds max per each method tested
     // This test checks if countNodes works and returns the right number of counting nodes
     // Checks cases for counting multiple nodes, creating a graph and makes sure there is a good amount of nodes
     @Test
+
     public void testCountNodes() {
-        Graph graph = new Graph();
+        Graph graph = new Graph(string, string);
         graph.addNode("5");
         graph.addNode("7");
         assertEquals(2, graph.countNodes());

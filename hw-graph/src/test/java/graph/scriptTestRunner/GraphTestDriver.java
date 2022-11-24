@@ -229,6 +229,8 @@ public class GraphTestDriver {
         String list = ("the children of " + parentName + " in " + graphName + " are:");
         List<String> nodes = new ArrayList<>(graph.listChildren(parentName));
         Collections.sort(nodes);
+//      Set<String> SetNodes = new HashSet<>(graph.listChildren(parentName));
+//      List<String> nodes = new ArrayList<>(SetNodes);
         if (nodes.size() != 0) {
             for (int i = 0; i < nodes.size(); i++) {
                 if (i + 1 == nodes.size()) {

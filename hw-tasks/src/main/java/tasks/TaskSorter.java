@@ -11,7 +11,8 @@
 
 package tasks;
 
-import graph.*;
+import graph.Edge;
+import graph.Graph;
 
 import java.util.*;
 
@@ -27,14 +28,16 @@ public class TaskSorter {
     // and edges should be Dependency objects.
     // You don't have to write an abstraction function or
     // representation invariant for this class.
-    private final Graph<Task, Dependency> graph;
+    Graph<Task, Dependency> graph;
+    // The graph is a representation of my graph class but instead of using
+    // graph<object, Edge<object, double/object> we using graph<task, dependency>
 
     /**
      * Creates a new TaskSorter object with no added tasks or dependencies.
      */
     public TaskSorter() {
         // TODO: Implement creating an empty graph.
-        graph = new Graph(Task, Dependency>);
+        graph = new Graph<>();
     }
 
     /**
@@ -60,7 +63,7 @@ public class TaskSorter {
      */
     public Set<Task> getTasks() {
         // TODO: Implement getting all the tasks (nodes) in the graph.
-        return (Set<Task>)graph.listNodes();
+        return graph.listNodes();
     }
 
     /**
@@ -80,8 +83,13 @@ public class TaskSorter {
         // NOTE: The edge should go from "before" to "after"!
         //       The tests will not pass if the edges are the other way.
 
-        if(!graph.addEdge(before, after, graph.getLabel())){
-            graph.addEdge(before, after, graph.getLabel(before, after));
+//        if(!graph.addEdge(before, after, graph.getLabel(before, after))){
+//            graph.addEdge(before, after, graph.getLabel(before, after));
+//        }
+        Set<Task> listNodes = graph.listNodes();
+
+        if(listNodes.contains(before) && listNodes.contains(after)) {
+            graph.addEdge(before, after, dep);
         }
     }
 
@@ -97,7 +105,20 @@ public class TaskSorter {
         // TODO: Implement getting the dependencies that point to the tasks
         //       depending on the given Task (in other words, get the edges
         //       to a node's children in the graph)
-        return graph.get(t).listChildren();
+        Set<Dependency> edgeSet = new HashSet<>();
+        for (Task dep: graph.listChildren(t)) {
+            for(Task child: graph.listChildren(dep)) {
+
+                Set<Dependency> label = graph.getLabel(t, child);
+                edgeSet.addAll(label);
+            }
+        }
+        return edgeSet;
+//        Set<Dependency> set = new HashSet<>();
+//        for (Edge<Task, Dependency> e: graph.listChildren(t)) {
+//            set.add(e.getLabel());
+//        }
+//        return set;
     }
 
     /**

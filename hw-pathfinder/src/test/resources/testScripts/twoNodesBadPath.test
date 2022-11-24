@@ -1,0 +1,13 @@
+#tests if two nodes that are connected with the wrong path
+CreateGraph twoNodes
+
+AddNode twoNodes a
+AddNode twoNodes b
+
+AddEdge twoNodes a b 10.0
+
+ListNodes twoNodes
+
+ListChildren twoNodes a
+
+FindPath twoNodes a c

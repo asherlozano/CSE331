@@ -34,6 +34,10 @@ public class Graph<N, D> {
         checkRep();
     }
 
+//    public Graph(N node, D edge){
+//        this.graph = new HashMap<<N>node, HashSet<Edge<<N>node, <E>edge>>>();
+//    }
+
     /**
      * adds a node to the current graph
      * @param name is the node being added
@@ -84,10 +88,6 @@ public class Graph<N, D> {
         return Collections.unmodifiableSet(graph.keySet());
     }
 
-    public HashSet<Edge<N, D>> listEdges(){
-        return Collections.unmodifiableSet();
-    }
-
     /**
      * lists all the children of the called on node
      * @param parent is the current node wanting to list their children
@@ -106,6 +106,7 @@ public class Graph<N, D> {
         }
         return client;
 
+
     }
 
     /**
@@ -115,15 +116,15 @@ public class Graph<N, D> {
      * @return the String which is the edgeLabel
      * @spec.requires the parent and child to be in the graph.
      */
-    public D getLabel(N parent, N child){
+    public Set<D> getLabel(N parent, N child){
         HashSet<Edge<N, D>> setEdges = graph.get(parent);
+        Set<D> labels = new HashSet<>();
         for(Edge<N, D> curr: setEdges){
-            Edge<N, D> edgeCheck = new Edge<N, D>(parent, child, curr.getEdgeLabel());
-            if(edgeCheck.equals(curr)){
-                return curr.getEdgeLabel();
+            if(child.equals(curr.getChild())){
+                labels.add(curr.getEdgeLabel());
             }
         }
-        return null;
+        return labels;
     }
 
     /**
