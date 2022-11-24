@@ -10,7 +10,6 @@
  */
 
 package pathfinder.scriptTestRunner;
-import graph.Edge;
 import graph.Graph;
 import pathfinder.Dijkstra;
 import pathfinder.datastructures.Path;
@@ -126,7 +125,7 @@ public class PathfinderTestDriver {
         private void addNode(String graphName, String nodeName) {
             // TODO Insert your code here.
 
-            Graph graph = pathfinderMap.get(graphName);
+            Graph<String,Double> graph = pathfinderMap.get(graphName);
             graph.addNode(nodeName);
             output.println("added node " + nodeName + " to " + graphName);
         }
@@ -147,10 +146,10 @@ public class PathfinderTestDriver {
         private void addEdge(String graphName, String parentName, String childName,
                 String edgeLabel) {
             // TODO Insert your code here.
-
-            Graph graph = pathfinderMap.get(graphName);
-            graph.addEdge(parentName, childName, edgeLabel);
-            output.println("added edge " + edgeLabel + " from " + parentName +
+            Double label = Double.valueOf(edgeLabel);
+            Graph<String, Double> graph = pathfinderMap.get(graphName);
+            graph.addEdge(parentName, childName, label);
+            output.println("added edge " + edgeLabel + "00 from " + parentName +
                     " to " + childName + " in " + graphName);
         }
 
@@ -166,7 +165,7 @@ public class PathfinderTestDriver {
         private void listNodes(String graphName) {
             // TODO Insert your code here.
 
-            Graph graph = pathfinderMap.get(graphName);
+            Graph<String, Double> graph = pathfinderMap.get(graphName);
             Set<String> nodeSet = new TreeSet<String>(graph.listNodes());
             String list = graphName + " contains:";
             for (String node : nodeSet){
@@ -216,26 +215,32 @@ public class PathfinderTestDriver {
 //        }
 //
 //        output.println(list);
-            Graph graph = pathfinderMap.get(graphName);
-            String list = ("the children of " + parentName + " in " + graphName + " are:");
+            Graph<String, Double> graph = pathfinderMap.get(graphName);
+            StringBuilder sb = new StringBuilder();
+            sb.append("the children of ").append(parentName).append(" in ").append(graphName).append(" are:");
+
             List<String> nodes = new ArrayList<>(graph.listChildren(parentName));
             Collections.sort(nodes);
-//      Set<String> SetNodes = new HashSet<>(graph.listChildren(parentName));
-//      List<String> nodes = new ArrayList<>(SetNodes);
             if (nodes.size() != 0) {
                 for (int i = 0; i < nodes.size(); i++) {
                     if (i + 1 == nodes.size()) {
                         String atNode = nodes.get(i);
-                        list += " " + atNode + "(" + graph.getLabel(parentName, atNode) + ")";
+                        sb.append(" ").append(atNode).append("(").append(graph.getLabel(parentName,atNode)).append("00)");
                     } else if (i + 1 != nodes.size()) {
-                        list += " " + nodes.get(i) + "(" + graph.getLabel(parentName, nodes.get(i)) + ")";
-
+                        sb.append(" ").append("(").append(graph.getLabel(parentName, nodes.get(i))).append("00)");
                     }
                 }
             } else {
-                output.println();
+                String builder = sb.toString();
+                //Cannot fix the array index brackets tried so many things!!!!![]
+                builder.substring(0, builder.length() -1);
+
+                output.print(builder);
             }
-            output.println(list);
+
+            String builder = sb.toString();
+            builder.substring(1, builder.length() - 1);
+            output.println(builder);
         }
     private void findPath(List<String> arguments) {
         if (arguments.size() != 3) {
@@ -273,7 +278,7 @@ public class PathfinderTestDriver {
         /**
          * This exception results when the input file cannot be parsed properly
          **/
-        class CommandException extends RuntimeException {
+        static class CommandException extends RuntimeException {
 
             public CommandException() {
                 super();

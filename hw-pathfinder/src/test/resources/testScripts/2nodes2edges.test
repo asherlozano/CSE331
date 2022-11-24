@@ -1,1 +1,15 @@
 #path with weight of 10 with 2 nodes and 2 edges test
+CreateGraph twoNodes
+
+AddNode twoNodes a
+AddNode twoNodes b
+
+AddEdge twoNodes a b 10.0
+AddEdge twoNodes b a 5.0
+
+ListNodes twoNodes
+
+ListChildren twoNodes a
+ListChildren twoNodes b
+
+FindPath twoNodes a b

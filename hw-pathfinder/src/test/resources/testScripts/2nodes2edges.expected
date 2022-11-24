@@ -7,7 +7,7 @@ added node b to twoNodes
 added edge 10.000 from a to b in twoNodes
 added edge 5.000 from b to a in twoNodes
 
-twoNodes contains: [a, b]
+twoNodes contains: a b
 
 the children of a in twoNodes are: b(10.000)
 the children of b in twoNodes are: a(5.000)
