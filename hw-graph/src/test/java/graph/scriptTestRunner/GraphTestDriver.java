@@ -30,7 +30,7 @@ public class GraphTestDriver {
      * String -> Graph: maps the names of graphs to the actual graph
      **/
     // TODO for the student: Uncomment and parameterize the next line correctly:
-    private final Map<String, Graph> graphs = new HashMap<String, Graph>();
+    private final Map<String, Graph<String, String>> graphs = new HashMap<>();
     private final PrintWriter output;
     private final BufferedReader input;
 
@@ -117,7 +117,7 @@ public class GraphTestDriver {
     private void createGraph(String graphName) {
         // TODO Insert your code here.
 
-        graphs.put(graphName, new Graph());
+        graphs.put(graphName, new Graph<>());
         output.println("created graph " + graphName);
     }
 
@@ -135,7 +135,7 @@ public class GraphTestDriver {
     private void addNode(String graphName, String nodeName) {
         // TODO Insert your code here.
 
-         Graph graph = graphs.get(graphName);
+         Graph<String, String> graph = graphs.get(graphName);
          graph.addNode(nodeName);
          output.println("added node " + nodeName + " to " + graphName);
     }
@@ -157,7 +157,7 @@ public class GraphTestDriver {
                          String edgeLabel) {
         // TODO Insert your code here.
 
-         Graph graph = graphs.get(graphName);
+         Graph<String, String> graph = graphs.get(graphName);
          graph.addEdge(parentName, childName, edgeLabel);
          output.println("added edge " + edgeLabel + " from " + parentName +
                  " to " + childName + " in " + graphName);
@@ -175,7 +175,7 @@ public class GraphTestDriver {
     private void listNodes(String graphName) {
         // TODO Insert your code here.
 
-        Graph graph = graphs.get(graphName);
+        Graph<String, String> graph = graphs.get(graphName);
         Set<String> nodeSet = new TreeSet<String>(graph.listNodes());
         String list = graphName + " contains:";
         for (String node : nodeSet){
@@ -225,7 +225,7 @@ public class GraphTestDriver {
 //        }
 //
 //        output.println(list);
-        Graph graph = graphs.get(graphName);
+        Graph<String, String> graph = graphs.get(graphName);
         String list = ("the children of " + parentName + " in " + graphName + " are:");
         List<String> nodes = new ArrayList<>(graph.listChildren(parentName));
         Collections.sort(nodes);

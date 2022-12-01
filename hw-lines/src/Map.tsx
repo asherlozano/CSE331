@@ -22,12 +22,25 @@ const position: LatLngExpression = [UW_LATITUDE_CENTER, UW_LONGITUDE_CENTER];
 interface MapProps {
   // TODO: Define the props of this component. You will want to pass down edges
   // so you can render them here
+    input: Array<Array<any>>
 }
-
 interface MapState {}
 
 class Map extends Component<MapProps, MapState> {
+    constructor(props: MapProps) {
+        super(props);
+    }
   render() {
+        let lines = [];
+        for(let i = 0; i < this.props.input.length; i++){
+            lines.push(<MapLine
+            x1={this.props.input[i][0]}
+            y1={this.props.input[i][1]}
+            x2={this.props.input[i][2]}
+            y2={this.props.input[i][3]}
+            color= {this.props.input[i][4]}
+            />)
+        }
     return (
       <div id="map">
         <MapContainer
