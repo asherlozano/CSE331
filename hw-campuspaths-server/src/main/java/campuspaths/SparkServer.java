@@ -10,8 +10,18 @@
  */
 
 package campuspaths;
-
+import com.google.gson.Gson;
+import pathfinder.CampusMap;
 import campuspaths.utils.CORSFilter;
+import spark.Route;
+import spark.Request;
+import spark.Spark;
+import spark.Response;
+import pathfinder.datastructures.Path;
+import pathfinder.datastructures.Point;
+
+import java.util.Map;
+
 
 public class SparkServer {
 
@@ -22,6 +32,36 @@ public class SparkServer {
         // React application to make requests to the Spark server, even though it
         // comes from a different server.
         // You should leave these two lines at the very beginning of main().
+        CampusMap map = new CampusMap();
+        Spark.get("/route-AB", new Route() {
+            @Override
+            public Object handle(Request request, Response response) throws Exception {
+                // As a first example, let's just return a static string.
+                String A = request.queryParams("start");
+                String B = request.queryParams("end");
+                if (A == null || B == null) {
+                    Spark.halt(400, "must have start and end");
+                }
+                Path<Point> path = null;
+                try {
+                    path = map.findShortestPath(A, B);
+                } catch (IllegalArgumentException e) {
+                    Spark.halt(400, "start and end do not present");
+                }
+                Gson gson = new Gson();
+                return gson.toJson(path);
+            }
+        });
+
+        Spark.get("/buildings", new Route() {
+                    @Override
+                    public Object handle(Request request, Response response) throws Exception {
+                        CampusMap map = new CampusMap();
+                        Map<String, String> m = map.buildingNames();
+                        Gson gson = new Gson();
+                        return gson.toJson(m.keySet());
+                    }
+                });
 
         // TODO: Create all the Spark Java routes you need here.
     }

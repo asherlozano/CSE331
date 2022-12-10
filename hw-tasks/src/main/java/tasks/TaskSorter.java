@@ -10,8 +10,6 @@
  */
 
 package tasks;
-
-import graph.Edge;
 import graph.Graph;
 
 import java.util.*;
@@ -28,7 +26,7 @@ public class TaskSorter {
     // and edges should be Dependency objects.
     // You don't have to write an abstraction function or
     // representation invariant for this class.
-    Graph<Task, Dependency> graph;
+    private final Graph<Task, Dependency> graph;
     // The graph is a representation of my graph class but instead of using
     // graph<object, Edge<object, double/object> we using graph<task, dependency>
 
@@ -45,7 +43,6 @@ public class TaskSorter {
      * this will do nothing.
      *
      * @param t Task to be added
-     * @spec.requires t != null
      */
     public void addTask(Task t) {
         // TODO: Implement adding a Task as a node.
@@ -71,8 +68,6 @@ public class TaskSorter {
      * added, then this will do nothing.
      *
      * @param dep Dependency to be added
-     * @spec.requires dep != null and
-     *     dep's before and after tasks are already added
      */
     public void addDependency(Dependency dep) {
         Task before = dep.getBeforeTask();
@@ -83,9 +78,6 @@ public class TaskSorter {
         // NOTE: The edge should go from "before" to "after"!
         //       The tests will not pass if the edges are the other way.
 
-//        if(!graph.addEdge(before, after, graph.getLabel(before, after))){
-//            graph.addEdge(before, after, graph.getLabel(before, after));
-//        }
         Set<Task> listNodes = graph.listNodes();
 
         if(listNodes.contains(before) && listNodes.contains(after)) {
@@ -98,7 +90,6 @@ public class TaskSorter {
      * prerequisite (the "before" task of the dependency).
      *
      * @param t the task to search for in the dependencies
-     * @spec.requires t != null and t has already been added as a task
      * @return set of dependencies with {@code t} as the "before" task
      */
     public Set<Dependency> getOutgoingDependencies(Task t) {
@@ -108,17 +99,11 @@ public class TaskSorter {
         Set<Dependency> edgeSet = new HashSet<>();
         for (Task dep: graph.listChildren(t)) {
             for(Task child: graph.listChildren(dep)) {
-
                 Set<Dependency> label = graph.getLabel(t, child);
                 edgeSet.addAll(label);
             }
         }
         return edgeSet;
-//        Set<Dependency> set = new HashSet<>();
-//        for (Edge<Task, Dependency> e: graph.listChildren(t)) {
-//            set.add(e.getLabel());
-//        }
-//        return set;
     }
 
     /**
@@ -152,7 +137,7 @@ public class TaskSorter {
     // of tasks in reverse topological order (https://en.wikipedia.org/wiki/Topological_sorting) if such
     // an order is possible. If different Tasks can be done in any order and still satisfy the dependencies,
     // addChain first adds the Tasks with alphabetically later names. If a cycle is detected in
-    // the dependencies, than returns true, otherwise returns false.
+    // the dependencies, then returns true, otherwise returns false.
     private boolean dfs(Task start, Set<Task> visited, Stack<Task> taskStack) {
         Set<Task> localVisited = new HashSet<>();
         Stack<Task> dfsStack = new Stack<>();

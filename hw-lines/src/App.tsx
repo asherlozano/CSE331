@@ -48,7 +48,7 @@ class App extends Component<{}, AppState> { // <- {} means no props.
         let end = val[1];
         let color = val[2];
         try {
-            let tempResponse = fetch("http://localhost:4567/route-A-to-B?start=" + start + "&end=" + end);
+            let tempResponse = fetch("http://localhost:3000" + start + "&end=" + end);
             let response = await tempResponse;
             if (!response.ok) {
                 //alert("The status is wrong! Expected: 200, Was: " + response.status);

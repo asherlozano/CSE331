@@ -1,7 +1,7 @@
 #empty graph test
 created graph emptyGraph
 
-emptyGraph contains: []
+emptyGraph contains:
 
 unknown: a
 unknown: b

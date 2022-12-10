@@ -184,64 +184,31 @@ public class PathfinderTestDriver {
             listChildren(graphName, parentName);
         }
 
-        private void listChildren(String graphName, String parentName) {
-            // TODO Insert your code here.
-//        Queue<Edge> queue = new LinkedList<Edge>();
-//        Set<Edge> visited = new HashSet<Edge>();
-//        for(Edge children : graph.listChildren(parentName)){
-//            queue.add(children);
-//        }
-//        while (!queue.isEmpty()) {
-//            Edge e = queue.remove();
-//            if (!visited.contains(e)) {
-//                visited.add(e);
-//                list += " " + e.getChild() + "(" + e.getEdgeLabel() + ")";
-//                for (Edge child : graph.listChildren(e.getChild())) {
-//                    if (!visited.contains(child)) {
-//                        queue.add(child);
-//                    }
-//                }
-//            }
-//
-//        }
-//        output.println(list);
-//   }
-//        Graph graph = graphs.get(graphName);
-//        String list = "the children of " + parentName + " in " + graphName + " are:";
-//
-//        TreeSet<Edge> edgeSet = new TreeSet<Edge>(graph.listChildren(parentName));
-//        for(Edge e : edgeSet){
-//                list += " " + e.getChild() + "(" + e.getEdgeLabel() + ")";
-//        }
-//
-//        output.println(list);
-            Graph<String, Double> graph = pathfinderMap.get(graphName);
-            StringBuilder sb = new StringBuilder();
-            sb.append("the children of ").append(parentName).append(" in ").append(graphName).append(" are:");
-
-            List<String> nodes = new ArrayList<>(graph.listChildren(parentName));
-            Collections.sort(nodes);
-            if (nodes.size() != 0) {
-                for (int i = 0; i < nodes.size(); i++) {
-                    if (i + 1 == nodes.size()) {
-                        String atNode = nodes.get(i);
-                        sb.append(" ").append(atNode).append("(").append(graph.getLabel(parentName,atNode)).append("00)");
-                    } else if (i + 1 != nodes.size()) {
-                        sb.append(" ").append("(").append(graph.getLabel(parentName, nodes.get(i))).append("00)");
-                    }
-                }
-            } else {
-                String builder = sb.toString();
-                //Cannot fix the array index brackets tried so many things!!!!![]
-                builder.substring(0, builder.length() -1);
-
-                output.print(builder);
+    private void listChildren(String graphName, String parentName) {
+        Graph<String, Double> graph = pathfinderMap.get(graphName);
+        String node = parentName;
+        Set<String> nodes = graph.listNodes();
+        String temp = "the children of " + parentName + " in " + graphName + " are:";
+        for (String n : nodes) {
+            if (n.equals(parentName)) {
+                node = n;
             }
-
-            String builder = sb.toString();
-            builder.substring(1, builder.length() - 1);
-            output.println(builder);
         }
+        Set<Graph.Edge> edges = new TreeSet<Graph.Edge>(new Comparator<Graph.Edge>() {
+            @Override
+            public int compare(Graph.Edge o1, Graph.Edge o2) {
+                if (o1.getChild().equals(o2.getChild())) {
+                    return ((String)o1.getEdgeLabel()).compareTo((String)o2.getEdgeLabel());
+                }
+                return ((String)o1.getChild()).compareTo((String)o2.getChild());
+            }
+        });
+        edges.addAll(graph.listNodeEdges(node));
+        for (Graph.Edge e : edges) {
+            temp += " " + e.getChild() + "(" + e.getEdgeLabel() + ")";
+        }
+        output.println(temp);
+    }
     private void findPath(List<String> arguments) {
         if (arguments.size() != 3) {
             throw new CommandException("Bad arguments to FindPath: " + arguments);

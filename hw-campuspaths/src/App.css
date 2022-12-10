@@ -18,6 +18,9 @@ file was empty.
 */
 
 /* Centers component with ID "map-wrapper" and sets width and bottom spacing */
+input {
+    margin: 3px;
+}
 #map {
     margin-left: auto;
     margin-right: auto;
@@ -30,4 +33,38 @@ file was empty.
 .leaflet-container {
     width: 800px;
     height: 600px;
+}
+
+#edge-list {
+    text-align: center;
+    margin: 5px;
+}
+
+#edge-list button {
+    font-size: 20px;
+    margin: 2px 5px;
+}
+
+#edge-list select {
+    font-size: 20px;
+    margin: 2px 5px;
+    padding: 2px 2px;
+}
+
+#edge-list p {
+    font-size: 20px;
+    margin: 2px 5px;
+    color: black;
+}
+
+#reset button{
+    margin: 2px 5px;
+    font-size: 20px;
+}
+
+#app-title {
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    margin: 15px;
 }
